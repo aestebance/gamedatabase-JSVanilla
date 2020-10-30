@@ -1,0 +1,13 @@
+{
+  "name": "final_project",
+  "version": "1.0.0",
+  "main": "src/app/index.js",
+  "scripts": {
+    "lint": "eslint ./src/app/ --ext .js",
+    "fix": "eslint ./src/app/ --fix --ext .js"
+  },
+  "devDependencies": {
+    "eslint": "^7.12.1",
+    "eslint-config-google": "^0.14.0"
+  }
+}
