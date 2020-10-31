@@ -1,0 +1,70 @@
+body {
+    background-color: #F9F9F9;
+}
+#app {
+    width: 100%;
+}
+#games {
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+
+.component {
+    width: 20%;
+    height: 240px;
+    margin-top: 30px;
+    margin-bottom: 40px;
+    
+}
+
+.img-class {
+    width: 200px;
+    transition: width 0.5s;
+    margin: auto;
+}
+
+.img-class:hover {
+    width: 220px;
+}
+
+.title {
+    text-align: center;
+    font-size: 17px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+p {
+    text-align: center;
+    font-size: 16px;
+    margin: 5px;
+}
+
+.header {
+    height: 150px;
+    text-align: center;
+}
+
+.nav {
+    display: flex;
+    width: 100%;
+}
+
+.pages {
+    margin: 10px 100px 0 0;
+    text-align: right;
+    font-size: 18px;
+    width: 50%;
+}
+
+.pages > a {
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 50%;
+}
+
+.search {
+    margin: 10px 0 0 100px;
+    width: 50%;
+}
