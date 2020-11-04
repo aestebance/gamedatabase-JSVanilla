@@ -3,10 +3,12 @@ body {
 }
 #app {
     width: 100%;
+    overflow: auto;
 }
 #games {
     display: flex;
     flex-wrap: wrap;
+    overflow: auto;
     
 }
 

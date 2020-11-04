@@ -1,3 +1,5 @@
+let url = "https://api.rawg.io/api/games?page_size=20";
+
 /**
  * 
  * TO DO:    MAKE  JS-DOCs
@@ -6,11 +8,10 @@
 const updateComponents = function(e) {
     e.preventDefault();
     e.stopPropagation();
-    let url;
     if (e.target.value.length <1) {
-        url = 'https://api.rawg.io/api/games?page_size=15';
+        url = 'https://api.rawg.io/api/games?page_size=20';
     } else {
-        url = 'https://api.rawg.io/api/games?page_size=15&ordering=-rating&search=' + e.target.value;
+        url = 'https://api.rawg.io/api/games?page_size=20&ordering=-rating&search=' + e.target.value;
     }
 
     const element = document.getElementById('games');
@@ -113,7 +114,11 @@ function createGameComponent(name, imgSrc, releasedDate, rating, callback) {
 
 function showGames(gamesArr) {
     document.getElementById('app').appendChild(createComponent(undefined, [{'key': 'id', 'value': 'games'}], 'div'));
-    gamesArr.forEach(function(game) {
+    if (gamesArr.next !== null) {
+        url = gamesArr.next;
+    }
+
+    gamesArr.results.forEach(function(game) {
         const productElement = createGameComponent(game.name,
             game.background_image,
             game.released,
@@ -122,4 +127,11 @@ function showGames(gamesArr) {
 
         document.getElementById('games').appendChild(productElement);
     });
+}
+
+function scrollEventListener(e) {
+    let app = document.getElementsByTagName('html')[0];
+    if (app.scrollTop + app.clientHeight >= app.scrollHeight) {
+        httpRequest(url, showGames);
+    }
 }
