@@ -1,4 +1,4 @@
-let url = "https://api.rawg.io/api/games?page_size=20";
+let url = "https://api.rawg.io/api/games?page_size=18";
 
 /**
  * 
@@ -9,15 +9,21 @@ const updateComponents = function(e) {
     e.preventDefault();
     e.stopPropagation();
     if (e.target.value.length <1) {
-        url = 'https://api.rawg.io/api/games?page_size=20';
+        url = 'https://api.rawg.io/api/games?page_size=18';
     } else {
-        url = 'https://api.rawg.io/api/games?page_size=20&ordering=-rating&search=' + e.target.value;
+        url = 'https://api.rawg.io/api/games?page_size=18&search=' + e.target.value;
     }
 
-    const element = document.getElementById('games');
+    const element = document.getElementById('row');
     if (element) {
         element.remove();
     }
+
+    const row = createComponent(undefined, [], 'div');
+    row.className = "row";
+    row.setAttribute('id', 'row');
+
+    document.getElementById('container').appendChild(row);
     
     httpRequest(url, showGames);
 };
@@ -26,7 +32,7 @@ const linkHandler = function(event) {
     event.preventDefault();
     event.stopPropagation();
 
-    const element = document.getElementById('games');
+    const element = document.getElementById('row');
     if (element) {
         element.remove();
     }
@@ -46,7 +52,6 @@ function createComponent(text = undefined, attributes, type) {
         component = document.createTextNode(text);
     } else {
         component = document.createElement(type);
-
         attributes.forEach(function(attribute) {
             component.setAttribute(attribute.key, attribute.value);
         });
@@ -59,15 +64,20 @@ function createComponent(text = undefined, attributes, type) {
  * @return {Element}
  */
 function createHeader(callback) {
-    const component = createComponent(undefined, [{'key': 'class', 'value': 'nav'}], 'div');
-    const search = createComponent(undefined, [{'key': 'class', 'value': 'search'}], 'div');
+    const header = createComponent(undefined, [], 'div');
+    header.className = "header fixed";
+    const component = createComponent(undefined, [], 'div');
+    component.className = "nav";
+    const search = createComponent(undefined, [], 'div');
+    search.className = "search";
     const input = createComponent(undefined, [{'key': 'type', 'value': 'textarea'}], 'input');
     input.addEventListener('input', callback);
-
+    
+    header.appendChild(component);
     component.appendChild(search);
     search.appendChild(input);
 
-    return component;
+    return header;
 }
 
 /**
@@ -80,52 +90,88 @@ function createHeader(callback) {
  * @param {function} callback
  * @return {Element}
  */
-function createGameComponent(name, imgSrc, releasedDate, rating, callback) {
-    const component = createComponent(undefined, [{'key': 'class', 'value': 'component'}], 'div');
-    const header = createComponent(undefined, [{'key': 'class', 'value': 'header'}], 'header');
-    const link = createComponent(undefined, [{'key': 'href', 'value': ''}], 'a');
-    link.addEventListener('click', callback);
-    const img = createComponent(undefined, [{'key': 'src', 'value': imgSrc}, {'key': 'alt', 'value': name},
-        {'key': 'class', 'value': 'img-class'}], 'img');
+function createGameComponent(game, callback) {
 
-    const data = createComponent(undefined, [{'key': 'class', 'value': 'data'}], 'div');
-    const gameName = createComponent(undefined, [{'key': 'class', 'value': 'title'}], 'p');
-    const textName = createComponent(name);
-    const date = new Date(releasedDate);
+    const col = createComponent(undefined, [], 'div');
+    col.className = "col-md-4";
+    const card = createComponent(undefined, [], 'div');
+    card.className = "card mb-4 shadow-sm text-white mb-3 bg-dark";
+    const img = createComponent(undefined, [{'key': 'src', 'value' : game.backgroundImage}, {'key':'alt', 'value': game.name}], 'img');
+    img.className = "bd-placeholder-img card-img-top";
+    const cardBody = createComponent(undefined, [], 'div');
+    cardBody.className = "card-body text-center";
+    const cardPlatforms = createComponent(undefined, [], 'div');
+    cardPlatforms.className = "card-platforms text-left";
+    const platform1 = createComponent(undefined, [{'key' : 'style', 'value' : pc}], 'div');
+    platform1.className = "platform";
+    const platform2 = createComponent(undefined, [{'key' : 'style', 'value' : ps4}], 'div');
+    platform2.className = "platform";
+    const gameScore = createComponent(undefined, [], 'div');
+    gameScore.className = "game-score";
+    const textScore = createComponent(game.metacritic);
+    let hSize = 'h3';
+    
+    if (game.name.length >= 30) {
+        hSize = 'h6';
+    }
+    else if (game.name.length >= 25) {
+        hSize = 'h5';
+    } else if (game.name.length >= 21) {
+        hSize = 'h4';
+    }
+    const title = createComponent(undefined, [], hSize);
+    title.className = "card-title text-left";
+    const textTitle = createComponent(game.name);
     const released = createComponent(undefined, [], 'p');
-    const textReleased = createComponent('Publicado: ' + date.getDay() + '/' + date.getMonth() + '/' + date.getFullYear());
-    const rate = createComponent(undefined, [], 'p');
-    const textRating = createComponent('Valoración: ' + rating);
+    released.className = "card-text text-left";
+    const textReleased = createComponent('Released: ' + game.released);
+    const link = createComponent(undefined, [{'key' : 'href', 'value' : '#'}], 'a');
+    link.className = 'btn btn-primary';
+    const textLink = createComponent('More [+]');
 
-    component.appendChild(header);
-    component.appendChild(data);
-    header.appendChild(link);
-    link.appendChild(img);
-    data.appendChild(gameName);
-    data.appendChild(released);
-    data.appendChild(rate);
-
-    gameName.appendChild(textName);
+    col.appendChild(card);
+    card.appendChild(img);
+    card.appendChild(cardBody);
+    cardBody.appendChild(cardPlatforms);
+    cardPlatforms.appendChild(platform1);
+    cardPlatforms.appendChild(platform2);
+    cardBody.appendChild(gameScore);
+    gameScore.appendChild(textScore);
+    cardBody.appendChild(title);
+    title.appendChild(textTitle);
+    cardBody.appendChild(released);
     released.appendChild(textReleased);
-    rate.appendChild(textRating);
+    cardBody.appendChild(link);
+    link.appendChild(textLink);
 
-    return component;
+    return col;
+}
+
+function createAlbum() {
+    const album = createComponent(undefined,[],'div');
+    album.className = "album py-5";
+    const container = createComponent(undefined, [], 'div');
+    container.className = "container-lg";
+    container.setAttribute('id', 'container');
+    const row = createComponent(undefined, [], 'div');
+    row.className = "row";
+    row.setAttribute('id', 'row');
+    album.appendChild(container);
+    container.appendChild(row);
+    return album;
 }
 
 function showGames(gamesArr) {
-    document.getElementById('app').appendChild(createComponent(undefined, [{'key': 'id', 'value': 'games'}], 'div'));
+    const row = document.getElementById('row');
+
+    const games = createGames(gamesArr);
     if (gamesArr.next !== null) {
         url = gamesArr.next;
     }
-
-    gamesArr.results.forEach(function(game) {
-        const productElement = createGameComponent(game.name,
-            game.background_image,
-            game.released,
-            game.rating,
-            linkHandler);
-
-        document.getElementById('games').appendChild(productElement);
+  
+    games.forEach(function(game) {
+        const productElement = createGameComponent(game, linkHandler);
+        row.appendChild(productElement);
     });
 }
 
