@@ -1,3 +1,15 @@
+.spinner-border {
+    width: 7rem !important;
+    height: 7rem !important;
+}
+
+.loading {
+    height: 75vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .fixed {
     position: fixed;
     z-index: 100;
@@ -16,10 +28,6 @@ html {
 
 .nav {
     padding-top: 20px;
-}
-
-.search {
-    margin-left: 80px;
 }
 
 .card-platforms {

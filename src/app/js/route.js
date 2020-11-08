@@ -3,8 +3,10 @@ function router(route, data = null) {
         case '/home':
             document.getElementById('app').appendChild(createHeader(updateComponents));
             document.getElementById('app').appendChild(createAlbum());
+            showLoading();
             httpRequest(url, showGames);
-            window.addEventListener('scroll', scrollEventListener); 
+            window.addEventListener('scroll', scrollEventListener);
+            showLoading(false);
             break;
         default:
             break;
