@@ -11,9 +11,11 @@ class Loading {
         divBorder.appendChild(border);
         loading.appendChild(textLoading);
         border.appendChild(loading);
-      
+
         this.div = divBorder;
     }
 
-    get() { return this.div; }
+    get() {
+        return this.div;
+    }
 }

@@ -13,11 +13,11 @@ const updateComponents = function(e) {
     }
 
     const row = createComponent(undefined, [], 'div');
-    row.className = "row";
+    row.className = 'row';
     row.setAttribute('id', 'row');
 
     document.getElementById('container').appendChild(row);
-    
+
     httpRequest(url, showGames);
 };
 
@@ -44,13 +44,13 @@ function createComponent(text = undefined, attributes, type) {
 }
 
 function createAlbum() {
-    const album = createComponent(undefined,[],'div');
-    album.className = "album py-5";
+    const album = createComponent(undefined, [], 'div');
+    album.className = 'album py-5';
     const container = createComponent(undefined, [], 'div');
-    container.className = "container-lg";
+    container.className = 'container-lg';
     container.setAttribute('id', 'container');
     const row = createComponent(undefined, [], 'div');
-    row.className = "row";
+    row.className = 'row';
     row.setAttribute('id', 'row');
     album.appendChild(container);
     container.appendChild(row);
@@ -64,9 +64,9 @@ function showGames(gamesArr) {
     if (gamesArr.next !== null) {
         url = gamesArr.next;
     }
-  
+
     games.forEach(function(game) {
-        const productElement = new GameComponent(game, function(){});
+        const productElement = new GameComponent(game, function() {});
         row.appendChild(productElement.get());
     });
 }

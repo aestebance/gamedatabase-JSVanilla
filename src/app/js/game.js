@@ -1,5 +1,5 @@
 class Game {
-    constructor (json) {
+    constructor(json) {
         this.id = json.id;
         this.name = json.name;
         this.released = json.released;
@@ -13,15 +13,15 @@ class Game {
         if (json.metacritic != undefined) {
             this.metacritic = json.metacritic;
         } else {
-            this.metacritic = "n/a";
-        }   
+            this.metacritic = 'n/a';
+        }
     }
 }
 
 function createGames(json) {
     const games = [];
-    json.results.forEach(function(game){
-        let gam = new Game(game);
+    json.results.forEach(function(game) {
+        const gam = new Game(game);
         games.push(gam);
     });
     return games;

@@ -1,41 +1,39 @@
 class GameComponent {
     constructor(game, callback) {
-
         const col = createComponent(undefined, [], 'div');
-        col.className = "col-md-4";
+        col.className = 'col-md-4';
         const card = createComponent(undefined, [], 'div');
-        card.className = "card mb-4 shadow-sm text-white mb-3 bg-dark";
-        const img = createComponent(undefined, [{ 'key': 'src', 'value': game.backgroundImage }, { 'key': 'alt', 'value': game.name }], 'img');
-        img.className = "bd-placeholder-img card-img-top";
+        card.className = 'card mb-4 shadow-sm text-white mb-3 bg-dark';
+        const img = createComponent(undefined, [{'key': 'src', 'value': game.backgroundImage}, {'key': 'alt', 'value': game.name}], 'img');
+        img.className = 'bd-placeholder-img card-img-top';
         const cardBody = createComponent(undefined, [], 'div');
-        cardBody.className = "card-body text-center";
+        cardBody.className = 'card-body text-center';
         const cardPlatforms = createComponent(undefined, [], 'div');
-        cardPlatforms.className = "card-platforms text-left";
+        cardPlatforms.className = 'card-platforms text-left';
         const plat = new Platforms();
-        const platform1 = createComponent(undefined, [{ 'key': 'style', 'value': plat.pc }], 'div');
-        platform1.className = "platform";
-        const platform2 = createComponent(undefined, [{ 'key': 'style', 'value': plat.ps4 }], 'div');
-        platform2.className = "platform";
+        const platform1 = createComponent(undefined, [{'key': 'style', 'value': plat.pc}], 'div');
+        platform1.className = 'platform';
+        const platform2 = createComponent(undefined, [{'key': 'style', 'value': plat.ps4}], 'div');
+        platform2.className = 'platform';
         const gameScore = createComponent(undefined, [], 'div');
-        gameScore.className = "game-score";
+        gameScore.className = 'game-score';
         const textScore = createComponent(game.metacritic);
         let hSize = 'h3';
 
         if (game.name.length >= 30) {
             hSize = 'h6';
-        }
-        else if (game.name.length >= 25) {
+        } else if (game.name.length >= 25) {
             hSize = 'h5';
         } else if (game.name.length >= 21) {
             hSize = 'h4';
         }
         const title = createComponent(undefined, [], hSize);
-        title.className = "card-title text-left";
+        title.className = 'card-title text-left';
         const textTitle = createComponent(game.name);
         const released = createComponent(undefined, [], 'p');
-        released.className = "card-text text-left";
+        released.className = 'card-text text-left';
         const textReleased = createComponent('Released: ' + game.released);
-        const link = createComponent(undefined, [{ 'key': 'href', 'value': '#' }], 'a');
+        const link = createComponent(undefined, [{'key': 'href', 'value': '#'}], 'a');
         link.className = 'btn btn-primary';
         const textLink = createComponent('More [+]');
 
