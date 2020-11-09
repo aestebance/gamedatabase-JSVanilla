@@ -18,10 +18,4 @@ class Loading {
     get() {
         return this.div;
     }
-
-    remove() {
-        let load = document.getElementById('loading');
-        let parent = load.parentNode;
-        parent.removeChild(load);
-    }
 }

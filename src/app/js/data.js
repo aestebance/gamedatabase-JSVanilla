@@ -1,11 +1,5 @@
-function pausecomp(millis)
-{
-    var date = new Date();
-    var curDate = null;
-    do { curDate = new Date(); }
-    while(curDate-date < millis);
-}
+let url = 'https://api.rawg.io/api/games?page_size=18';
 
-function httpRequest(url, callback) {
-    fetch(url).then((response) => response.json()).then((myJson) => callback(myJson)).catch((e) => console.log(e));
+function httpRequest(url, callback, clear = false) {
+    fetch(url).then((response) => response.json()).then((myJson) => callback(myJson, clear)).catch((e) => console.log(e));
 }
