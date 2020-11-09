@@ -1,3 +1,11 @@
+function renderLayout() {
+    console.log(document.getElementById('app'));
+    if (document.getElementById('app') == "") {
+        console.log("entra");
+    }
+}
+
+
 const updateComponents = function(e) {
     e.preventDefault();
     e.stopPropagation();

@@ -1,5 +1,5 @@
 function router(route, data = null) {
-    switch (route) {
+   /* switch (route) {
     case '/home':
         const header = new Header(updateComponents);
         document.getElementById('app').appendChild(header.get());
@@ -11,5 +11,5 @@ function router(route, data = null) {
         break;
     default:
         break;
-    }
+    }*/
 }
