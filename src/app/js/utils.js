@@ -1,27 +1,12 @@
 let url = "https://api.rawg.io/api/games?page_size=18";
 
-/**
- * 
- * TO DO:    MAKE  JS-DOCs
- * 
- */
-
-const linkHandler = function(event) {
-    event.preventDefault();
-    event.stopPropagation();
-
-    const element = document.getElementById('row');
-    if (element) {
-        element.remove();
-    }
-};
-
 function showLoading(loading = true) {
     const row = document.getElementById('row');
     row.innerHTML = '';
     if(loading) {
         row.classList.add('loading');
-        row.appendChild(createLoading());
+        const lo = new Loading();
+        row.appendChild(lo.get());
     } else {
         row.classList.remove('loading');
     }

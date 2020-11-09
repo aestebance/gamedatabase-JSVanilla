@@ -14,11 +14,7 @@ class Game {
             this.metacritic = json.metacritic;
         } else {
             this.metacritic = "n/a";
-        }
-        
-    }
-
-    showData() {
+        }   
     }
 }
 

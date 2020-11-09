@@ -1,7 +1,8 @@
 function router(route, data = null) {
     switch(route) {
         case '/home':
-            document.getElementById('app').appendChild(createHeader(updateComponents));
+            const h = new Header(updateComponents);
+            document.getElementById('app').appendChild(h.get());
             document.getElementById('app').appendChild(createAlbum());
             showLoading();
             httpRequest(url, showGames);
