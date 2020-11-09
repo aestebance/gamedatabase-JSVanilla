@@ -1,6 +1,6 @@
 class Loading {
     constructor(loadingText = 'loading....') {
-        const divBorder = createComponent(undefined, [], 'div');
+        const divBorder = createComponent(undefined, [{'key' : 'id', 'value' : 'loading'}], 'div');
         divBorder.className = 'd-flex justify-content-center';
         const border = createComponent(undefined, [], 'div');
         border.className = 'spinner-border text-light m-5';
@@ -17,5 +17,11 @@ class Loading {
 
     get() {
         return this.div;
+    }
+
+    remove() {
+        let load = document.getElementById('loading');
+        let parent = load.parentNode;
+        parent.removeChild(load);
     }
 }

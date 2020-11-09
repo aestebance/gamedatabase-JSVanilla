@@ -11,7 +11,7 @@ class Header {
             {'key': 'placeholder', 'value': 'Game to search...'},
             {'key': 'arial-label', 'value': 'Game to search...'},
             {'key': 'arial-describedby', 'value': 'basic-addon2'}], 'input');
-        input.className = 'form-control';
+        input.className = 'form-control text-white bg-dark';
 
         input.addEventListener('input', callback);
 

@@ -17,12 +17,3 @@ class Game {
         }
     }
 }
-
-function createGames(json) {
-    const games = [];
-    json.results.forEach(function(game) {
-        const gam = new Game(game);
-        games.push(gam);
-    });
-    return games;
-}
