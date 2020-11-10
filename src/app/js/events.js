@@ -3,6 +3,8 @@
  * @param {*} e 
  */
 const navbarEvent = function(e) {
+    e.preventDefault();
+    e.stopPropagation();
     console.log(e.srcElement.innerText);
 }
 

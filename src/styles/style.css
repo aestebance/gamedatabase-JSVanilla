@@ -94,3 +94,12 @@ li.nav-item {
 .bd-placeholder-img {
     height: 225px;
 }
+
+#form-control {
+    transition: all 0.7s ease;
+}
+
+#form-control:hover {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+}

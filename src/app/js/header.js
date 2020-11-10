@@ -12,6 +12,24 @@ class Header {
             {'key': 'arial-label', 'value': 'Game to search...'},
             {'key': 'arial-describedby', 'value': 'basic-addon2'}], 'input');
         input.className = 'form-control text-white bg-dark';
+        input.setAttribute('id', 'form-control');
+        /*input.addEventListener('mouseenter', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            e.srcElement.classList.remove('bg-dark');
+            e.srcElement.classList.add('bg-white');
+            e.srcElement.classList.remove('text-white');
+            e.srcElement.classList.add('text-dark');
+        });
+
+        input.addEventListener('mouseleave', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            e.srcElement.classList.remove('bg-white');
+            e.srcElement.classList.add('bg-dark');
+            e.srcElement.classList.remove('text-dark');
+            e.srcElement.classList.add('text-white');
+        });*/
 
         input.addEventListener('input', callback);
 
