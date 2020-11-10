@@ -3,6 +3,10 @@
     height: 7rem !important;
 }
 
+.hidden {
+    display: none;
+}
+
 .fixed {
     position: fixed;
     z-index: 100;
@@ -12,11 +16,20 @@ html {
     background-color: #151515;
 }
 
+
+.nav-item {
+    font-size: 18px;
+}
+
+li.nav-item {
+    margin-right: 30px;
+}
+
 .header {
     background-color: #151515;
     margin-bottom: 40px;
     width: 100%;
-    height: 80px;
+    height: 140px;
 }
 
 .form-control {
@@ -56,6 +69,7 @@ html {
 
 .album {
     background-color: #151515;
+    margin-top: 50px;
 }
 
 .row {

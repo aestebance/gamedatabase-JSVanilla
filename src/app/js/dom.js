@@ -1,23 +1,12 @@
 /**
  * 
- * @param {*} e 
- */
-function scrollEventListener(e) {
-    const app = document.getElementsByTagName('html')[0];
-    if (app.scrollTop + app.clientHeight >= app.scrollHeight) {
-        httpRequest(url, showGames);
-    }
-}
-
-/**
- * 
  * @param {*} loading 
  */
 function showLoading(loading = true) {
     const app = document.getElementById('app');
     if (loading) {
         const lo = new Loading();
-        app.appendChild(lo.get());
+        app.insertBefore(lo.get(), app.childNodes[0]);
     } else {
         const lo = document.getElementById('loading');
         app.removeChild(lo);
@@ -98,30 +87,17 @@ function renderLayout(renderDone) {
         const header = new Header(updateComponents);
         app.appendChild(header.get());
     }
+    if (document.querySelector('.navbar') == null) {
+        const nav = new Navbar(navbarEvent);
+        const head = document.getElementById('header');
+        head.appendChild(nav.get());
+    }
     if (document.querySelector('.album') == null) {
         app.appendChild(createAlbum());
     }
     renderDone();
 
 }
-
-/**
- * 
- * @param {*} e 
- */
-const updateComponents = function(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    if (e.target.value.length <1) {
-        url = 'https://api.rawg.io/api/games?page_size=18';
-    } else {
-        url = 'https://api.rawg.io/api/games?page_size=18&search=' + e.target.value;
-    }
-
-    showLoading();
-    httpRequest(url, showGames, true);
-};
-
 
 /**
  * This function creates a web component

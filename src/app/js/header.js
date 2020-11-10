@@ -1,7 +1,7 @@
 class Header {
     constructor(callback) {
         const header = createComponent(undefined, [], 'div');
-        header.className = 'header fixed';
+        header.className = 'header fixed-top';
         header.setAttribute('id', 'header');
         const component = createComponent(undefined, [], 'div');
         component.className = 'nav';
