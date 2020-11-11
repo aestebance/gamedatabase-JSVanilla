@@ -8,30 +8,13 @@ class Header {
         const search = createComponent(undefined, [], 'div');
         search.className = 'input-group mb-3';
         const input = createComponent(undefined, [{'key': 'type', 'value': 'text'},
-            {'key': 'placeholder', 'value': 'Game to search...'},
-            {'key': 'arial-label', 'value': 'Game to search...'},
+            {'key': 'placeholder', 'value': 'Game to search... (press enter)'},
+            {'key': 'arial-label', 'value': 'Game to search... (press enter)'},
             {'key': 'arial-describedby', 'value': 'basic-addon2'}], 'input');
         input.className = 'form-control text-white bg-dark';
         input.setAttribute('id', 'form-control');
-        /*input.addEventListener('mouseenter', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            e.srcElement.classList.remove('bg-dark');
-            e.srcElement.classList.add('bg-white');
-            e.srcElement.classList.remove('text-white');
-            e.srcElement.classList.add('text-dark');
-        });
 
-        input.addEventListener('mouseleave', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            e.srcElement.classList.remove('bg-white');
-            e.srcElement.classList.add('bg-dark');
-            e.srcElement.classList.remove('text-dark');
-            e.srcElement.classList.add('text-white');
-        });*/
-
-        input.addEventListener('input', callback);
+        input.addEventListener('keyup', callback);
 
         header.appendChild(component);
         component.appendChild(search);

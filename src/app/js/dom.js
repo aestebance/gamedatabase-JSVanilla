@@ -1,5 +1,15 @@
 /**
  * 
+ * @param {*} route 
+ */
+function activateRoute(route) {
+    const ul = document.getElementById('routes');
+    ul.childNodes.forEach(element => {
+        (element.innerText === route.slice(1)) ? element.classList.add('active') : element.classList.remove('active');
+    });
+}
+/**
+ * 
  * @param {*} loading 
  */
 function showLoading(loading = true) {
@@ -63,7 +73,9 @@ function showGames(gamesArr, clear = false) {
 
     const games = createGames(gamesArr);
     if (gamesArr.next !== null) {
-        url = gamesArr.next;
+        next = gamesArr.next;
+    } else {
+        next = null;
     }
 
     games.forEach(function(game) {

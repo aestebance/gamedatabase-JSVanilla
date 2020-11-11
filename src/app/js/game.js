@@ -9,6 +9,7 @@ class Game {
         this.pPlatforms = json.parent_platforms;
         this.stores = json.stores;
         this.clips = json.clip;
+        this.genres = json.genres;
         this.screenshot = json.short_screenshots;
         if (json.metacritic != undefined) {
             this.metacritic = json.metacritic;

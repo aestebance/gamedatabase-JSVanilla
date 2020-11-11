@@ -14,6 +14,7 @@ class Navbar {
 
         const ul = createComponent(undefined, [], 'ul');
         ul.className = "navbar-nav mr-auto";
+        ul.setAttribute('id', 'routes');
         divnav.appendChild(ul);
         ul.addEventListener('click', callback);
 
@@ -68,7 +69,7 @@ class Navbar {
             {'key' : 'aria-haspopup', 'value' : 'true'},
             {'key' : 'aria-expanded', 'value' : 'false'},
         ], 'button');
-        button.className = 'btn btn-secondary dropdown-toggle';
+        button.className = 'btn btn-secondary dropdown-toggle hidden';
         divDrop.appendChild(button);
 
         const buttonText = createComponent('Dropdown button ');

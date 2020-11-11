@@ -10,11 +10,17 @@ class GameComponent {
         cardBody.className = 'card-body text-center';
         const cardPlatforms = createComponent(undefined, [], 'div');
         cardPlatforms.className = 'card-platforms text-left';
-        const plat = new Platforms();
-        const platform1 = createComponent(undefined, [{'key': 'style', 'value': plat.pc}], 'div');
-        platform1.className = 'platform';
-        const platform2 = createComponent(undefined, [{'key': 'style', 'value': plat.ps4}], 'div');
-        platform2.className = 'platform';
+        if (game.pPlatforms != undefined) {
+            game.pPlatforms.forEach(element => {
+                let value = '';
+                (platforms[element.platform.id]['url'] != undefined)? value = platforms[element.platform.id]['url'] : null;
+                const platform = createComponent(undefined, [], 'div');
+                platform.setAttribute('style', value);
+                platform.setAttribute('title', platforms[element.platform.id]['name']);
+                platform.className = 'platform';
+                cardPlatforms.appendChild(platform);
+            });
+        }
         const gameScore = createComponent(undefined, [], 'div');
         gameScore.className = 'game-score';
         const textScore = createComponent(game.metacritic);
@@ -30,9 +36,11 @@ class GameComponent {
         const title = createComponent(undefined, [], hSize);
         title.className = 'card-title text-left';
         const textTitle = createComponent(game.name);
-        const released = createComponent(undefined, [], 'p');
-        released.className = 'card-text text-left';
-        const textReleased = createComponent('Released: ' + game.released);
+        const genre = createComponent(undefined, [], 'p');
+        genre.className = 'card-text text-left';
+        let textG = '';
+        game.genres.forEach(element => {textG += element.name + ', '});
+        const textGenre = createComponent('Genres: ' + textG.slice(0, -2));
         const link = createComponent(undefined, [{'key': 'href', 'value': '#'}], 'a');
         link.className = 'btn btn-primary';
         const textLink = createComponent('More [+]');
@@ -41,14 +49,12 @@ class GameComponent {
         card.appendChild(img);
         card.appendChild(cardBody);
         cardBody.appendChild(cardPlatforms);
-        cardPlatforms.appendChild(platform1);
-        cardPlatforms.appendChild(platform2);
         cardBody.appendChild(gameScore);
         gameScore.appendChild(textScore);
         cardBody.appendChild(title);
         title.appendChild(textTitle);
-        cardBody.appendChild(released);
-        released.appendChild(textReleased);
+        cardBody.appendChild(genre);
+        genre.appendChild(textGenre);
         cardBody.appendChild(link);
         link.appendChild(textLink);
 

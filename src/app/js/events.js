@@ -5,7 +5,7 @@
 const navbarEvent = function(e) {
     e.preventDefault();
     e.stopPropagation();
-    console.log(e.srcElement.innerText);
+    router('/' + e.srcElement.innerText);
 }
 
 /**
@@ -15,14 +15,12 @@ const navbarEvent = function(e) {
 const updateComponents = function(e) {
     e.preventDefault();
     e.stopPropagation();
-    if (e.target.value.length <1) {
-        url = 'https://api.rawg.io/api/games?page_size=18';
-    } else {
-        url = 'https://api.rawg.io/api/games?page_size=18&search=' + e.target.value;
+    if (e.key === 'Enter') {
+        window.scrollTo(0,0);
+        showLoading();
+        next = null;
+        (e.target.value.length >= 1)? httpRequest(url + '&search=' + e.target.value, showGames, true) : httpRequest(url, showGames, true);
     }
-    window.scrollTo(0,0);
-    showLoading();
-    httpRequest(url, showGames, true);
 };
 
 /**
@@ -33,6 +31,6 @@ function scrollEventListener(e) {
     const app = document.getElementsByTagName('html')[0];
     if (app.scrollTop + app.clientHeight >= app.scrollHeight) {
         showLoading();
-        httpRequest(url, showGames);
+        (next) ? httpRequest(next, showGames) : showLoading(false);
     }
 }
