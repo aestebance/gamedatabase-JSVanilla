@@ -75,9 +75,11 @@ class GameComponent {
             }
         }
         const textStores = createComponent('Stores: ' + textS);
-        const link = createComponent(undefined, [{'key': 'href', 'value': '#'}], 'a');
+        const link = createComponent(undefined, [], 'a');
         link.className = 'btn btn-primary';
         const textLink = createComponent('More [+]');
+        link.setAttribute('id', game.id);
+        link.addEventListener('click', callback);
 
         col.appendChild(card);
         card.appendChild(img);

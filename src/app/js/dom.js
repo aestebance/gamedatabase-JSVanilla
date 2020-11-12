@@ -119,7 +119,7 @@ function showGames(gamesArr, clear = false) {
     }
 
     games.forEach(function(game) {
-        const productElement = new GameComponent(game, function() {});
+        const productElement = new GameComponent(game, createfrontFrame);
         row.appendChild(productElement.get());
     });
 
