@@ -1,4 +1,7 @@
-
+/**
+ * 
+ * @param {*} e 
+ */
 function createfrontFrame(e) {
     const l = createComponent(undefined, [], 'div');
     l.classList = 'prueba';
@@ -19,7 +22,6 @@ function clickDropDown(e) {
     const newUrl = removeNumbersUrl(url);
     url = newUrl + e.srcElement.id;
     httpRequest(url, showGames, true);
-    showLoading(false);
 }
 
 /**
@@ -40,7 +42,6 @@ const updateComponents = function(e) {
     e.preventDefault();
     e.stopPropagation();
     if (e.key === 'Enter') {
-        createfrontFrame();
         window.scrollTo(0,0);
         showLoading();
         next = null;

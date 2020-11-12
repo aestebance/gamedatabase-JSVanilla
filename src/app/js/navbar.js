@@ -1,4 +1,6 @@
 class Navbar {
+    container;
+
     constructor(callback) {
         const container = createComponent(undefined, [], 'div');
         container.className = 'container';
@@ -83,6 +85,53 @@ class Navbar {
         dropMenu.className = 'dropdown-menu';
         dropMenu.setAttribute('aria-labelledby', 'dropdownMenuButton');
         divDrop.appendChild(dropMenu);
+
+        const orderDrop = createComponent(undefined, [], 'div');
+        orderDrop.className = 'dropdown';
+        orderDrop.setAttribute('id', 'ordering');
+        navbar.appendChild(orderDrop);
+
+        const buttonOrder = createComponent(undefined, [
+            {'key' : 'type', 'value' : 'button'},
+            {'key' : 'id', 'value' : 'orderButton'},
+            {'key' : 'data-toggle', 'value' : 'dropdown'},
+            {'key' : 'aria-haspopup', 'value' : 'true'},
+            {'key' : 'aria-expanded', 'value' : 'false'},
+        ], 'button');
+        buttonOrder.className = 'btn btn-secondary dropdown-toggle';
+        orderDrop.appendChild(buttonOrder);
+
+        const orderButtonText = createComponent('Order by:');
+        buttonOrder.appendChild(orderButtonText);
+
+        const orderMenu = createComponent(undefined, [], 'div');
+        orderMenu.className = 'dropdown-menu';
+        orderMenu.setAttribute('aria-labelledby', 'dropdownMenuButton');
+        orderDrop.appendChild(orderMenu);
+
+        const arr = ['Default', 'name[A-Z]', 'name[Z-A]', 'released', 'added', 'created', 'rating'];
+        arr.forEach(element => {
+            const a = createComponent(undefined,[],'a');
+            a.classList = 'dropdown-item';
+            a.setAttribute('href', '#');
+            a.innerText = element;
+            a.addEventListener('click', function(e) {
+                const db = document.getElementById('orderButton');
+                db.innerText = e.srcElement.innerText;
+                if (e.srcElement.innerText === 'Default') {
+                    ordering = null;
+                } else if (e.srcElement.innerText === 'name[A-Z]') {
+                    ordering = 'name';
+                } else if (e.srcElement.innerText === 'name[Z-A]') {
+                    ordering = '-name';
+                } else {
+                    ordering = '-' + e.srcElement.innerText;
+                }
+                showLoading();
+                httpRequest(url, showGames, true);
+            });
+            orderMenu.appendChild(a);
+        });
 
         this.container = container;
     }
