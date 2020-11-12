@@ -3,7 +3,11 @@ class Game {
         this.id = json.id;
         this.name = json.name;
         this.released = json.released;
-        this.backgroundImage = json.background_image;
+        if (json.background_image === null) {
+            this.backgroundImage = 'https://ctt.trains.com/sitefiles/images/no-preview-available.png';
+        } else {
+            this.backgroundImage = json.background_image;
+        }
         this.rating = json.rating;
         this.platforms = json.platforms;
         this.pPlatforms = json.parent_platforms;

@@ -2,6 +2,20 @@
  * 
  * @param {*} e 
  */
+function clickDropDown(e) {
+    showLoading();
+    const db = document.getElementById('dropdownMenuButton');
+    db.innerText = e.srcElement.innerText;
+    const newUrl = removeNumbersUrl(url);
+    url = newUrl + e.srcElement.id;
+    httpRequest(url, showGames, true);
+    showLoading(false);
+}
+
+/**
+ * 
+ * @param {*} e 
+ */
 const navbarEvent = function(e) {
     e.preventDefault();
     e.stopPropagation();

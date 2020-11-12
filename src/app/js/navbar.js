@@ -16,7 +16,6 @@ class Navbar {
         ul.className = "navbar-nav mr-auto";
         ul.setAttribute('id', 'routes');
         divnav.appendChild(ul);
-        ul.addEventListener('click', callback);
 
         const li1 = createComponent(undefined, [], 'li');
         li1.className = 'nav-item active';
@@ -27,6 +26,7 @@ class Navbar {
         ul.appendChild(li1);
         li1.appendChild(a1);
         a1.appendChild(a1text);
+        a1.addEventListener('click', callback);
 
         const li2 = createComponent(undefined, [], 'li');
         li2.className = 'nav-item';
@@ -37,6 +37,7 @@ class Navbar {
         ul.appendChild(li2);
         li2.appendChild(a2);
         a2.appendChild(a2text);
+        a2.addEventListener('click', callback);
 
         const li3 = createComponent(undefined, [], 'li');
         li3.className = 'nav-item';
@@ -47,19 +48,22 @@ class Navbar {
         ul.appendChild(li3);
         li3.appendChild(a3);
         a3.appendChild(a3text);
+        a3.addEventListener('click', callback);
 
         const li4 = createComponent(undefined, [], 'li');
         li4.className = 'nav-item';
         const a4 = createComponent(undefined, [], 'a');
         a4.className = 'nav-link';
         a4.setAttribute('href', '#');
-        const a4text = createComponent('Manufactured');
+        const a4text = createComponent('Store');
         ul.appendChild(li4);
         li4.appendChild(a4);
         a4.appendChild(a4text);
+        a4.addEventListener('click', callback);
 
         const divDrop = createComponent(undefined, [], 'div');
         divDrop.className = 'dropdown';
+        divDrop.setAttribute('id', 'dropdown');
         navbar.appendChild(divDrop);
 
         const button = createComponent(undefined, [
@@ -79,27 +83,6 @@ class Navbar {
         dropMenu.className = 'dropdown-menu';
         dropMenu.setAttribute('aria-labelledby', 'dropdownMenuButton');
         divDrop.appendChild(dropMenu);
-
-        const dropA1 = createComponent(undefined, [], 'a');
-        dropA1.className = 'dropdown-item';
-        dropA1.setAttribute('href', '#');
-        const dropA1Text = createComponent('Action');
-        dropMenu.appendChild(dropA1);
-        dropA1.appendChild(dropA1Text);
-
-        const dropA2 = createComponent(undefined, [], 'a');
-        dropA2.className = 'dropdown-item';
-        dropA2.setAttribute('href', '#');
-        const dropA2Text = createComponent('Another action');
-        dropMenu.appendChild(dropA2);
-        dropA2.appendChild(dropA2Text);
-
-        const dropA3 = createComponent(undefined, [], 'a');
-        dropA3.className = 'dropdown-item';
-        dropA3.setAttribute('href', '#');
-        const dropA3Text = createComponent('Something else here')
-        dropMenu.appendChild(dropA3);
-        dropA3.appendChild(dropA3Text);
 
         this.container = container;
     }

@@ -6,22 +6,27 @@ function router(route, data = null) {
             case '/All':
                 window.scrollTo(0,0);
                 activateRoute(route);
+                hiddeDropDown();
+                url = 'https://api.rawg.io/api/games?page_size=18';
                 httpRequest(url, showGames, true);
                 break;
             case '/Genre':
                 window.scrollTo(0,0);
                 activateRoute(route);
-                httpRequest(url, showGames, true);
+                httpRequest('https://api.rawg.io/api/genres', activateDropDown, true);
+                url = 'https://api.rawg.io/api/games?page_size=18&genres='
                 break;
             case '/Platform':
                 window.scrollTo(0,0);
                 activateRoute(route);
-                httpRequest(url, showGames, true);
+                httpRequest('https://api.rawg.io/api/platforms/lists/parents', activateDropDown, true);
+                url = 'https://api.rawg.io/api/games?page_size=18&parent_platforms=';
                 break;
-            case '/Manufactured':
+            case '/Store':
                 window.scrollTo(0,0);
                 activateRoute(route);
-                httpRequest(url, showGames, true);
+                httpRequest('https://api.rawg.io/api/stores', activateDropDown, true);
+                url = 'https://api.rawg.io/api/games?page_size=18&stores='
                 break;
             default:
                 break;

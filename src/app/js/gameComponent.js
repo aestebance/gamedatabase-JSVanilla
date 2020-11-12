@@ -21,6 +21,7 @@ class GameComponent {
                 cardPlatforms.appendChild(platform);
             });
         }
+
         const gameScore = createComponent(undefined, [], 'div');
         gameScore.className = 'game-score';
         const textScore = createComponent(game.metacritic);
@@ -39,8 +40,41 @@ class GameComponent {
         const genre = createComponent(undefined, [], 'p');
         genre.className = 'card-text text-left';
         let textG = '';
-        game.genres.forEach(element => {textG += element.name + ', '});
-        const textGenre = createComponent('Genres: ' + textG.slice(0, -2));
+        let num = 0;
+        if (game.genres) {
+            game.genres.forEach(element => {
+                if (textG.length < 15) {
+                    textG += element.name + ', '
+                } else {
+                    num++;
+                }  
+            });
+            textG = textG.slice(0, -2);
+            if (num > 0) {
+                textG += ' + [' + num + ']';
+            }
+        }
+        
+        const textGenre = createComponent('Genres: ' + textG);
+        const stores = createComponent(undefined, [], 'p');
+        stores.className = 'card-text text-left';
+        let textS = '';
+        num = 0;
+        if (game.stores) {
+            game.stores.forEach(element => {
+                if (textS.length < 15) {
+                    textS += element.store.name + ', ';
+                }
+                else {
+                    num++;
+                }
+            });
+            textS = textS.slice(0, -2);
+            if (num > 0) {
+                textS += ' + [' + num + ']';
+            }
+        }
+        const textStores = createComponent('Stores: ' + textS);
         const link = createComponent(undefined, [{'key': 'href', 'value': '#'}], 'a');
         link.className = 'btn btn-primary';
         const textLink = createComponent('More [+]');
@@ -55,6 +89,8 @@ class GameComponent {
         title.appendChild(textTitle);
         cardBody.appendChild(genre);
         genre.appendChild(textGenre);
+        cardBody.appendChild(stores);
+        stores.appendChild(textStores);
         cardBody.appendChild(link);
         link.appendChild(textLink);
 

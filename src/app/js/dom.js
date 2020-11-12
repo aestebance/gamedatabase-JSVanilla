@@ -1,5 +1,43 @@
 /**
  * 
+ */
+function hiddeDropDown() {
+    const db = document.getElementById('dropdownMenuButton');
+    db.classList.add('hidden');
+}
+/**
+ * 
+ * @param {*} arr 
+ */
+function activateDropDown(arr, clear = false) {
+    const dd = document.getElementById('dropdown');
+    const db = document.getElementById('dropdownMenuButton');
+    db.innerText = arr.results[0].name;
+    url += arr.results[0].id;
+    if (clear) {
+        clearGames();
+    }
+
+    db.classList.remove('hidden');
+    const div = dd.lastChild;
+    div.innerHTML = '';
+    arr.results.forEach(element => {
+        const a = createComponent(undefined, [], 'a');
+        a.classList = 'dropdown-item';
+        a.setAttribute('href', '#');
+        a.setAttribute('id', element.id);
+        a.innerText = element.name;
+        a.addEventListener('click', clickDropDown);
+        div.appendChild(a); 
+    });
+    httpRequest(url, showGames, true);
+
+    if (document.getElementById('loading')) {
+        showLoading(false);
+    }
+}
+/**
+ * 
  * @param {*} route 
  */
 function activateRoute(route) {
@@ -18,8 +56,10 @@ function showLoading(loading = true) {
         const lo = new Loading();
         app.insertBefore(lo.get(), app.childNodes[0]);
     } else {
-        const lo = document.getElementById('loading');
-        app.removeChild(lo);
+        while(document.getElementById('loading')) {
+            const lo = document.getElementById('loading');
+            app.removeChild(lo);
+        }
     }
 }
 
