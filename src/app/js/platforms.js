@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable max-len */
 const platforms = {
     1: {
         'name': 'PC',

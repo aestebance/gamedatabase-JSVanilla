@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /**
  *
  * @param {*} e
@@ -43,7 +44,10 @@ const updateComponents = function(e) {
         window.scrollTo(0, 0);
         showLoading();
         next = null;
-        (e.target.value.length >= 1)? httpRequest(url + '&search=' + e.target.value, showGames, true) : httpRequest(url, showGames, true);
+        (e.target.value.length >= 1)?
+            httpRequest(url + '&search=' + e.target.value, showGames, true) :
+            httpRequest(url, showGames, true);
+
         e.target.value = '';
     }
 };

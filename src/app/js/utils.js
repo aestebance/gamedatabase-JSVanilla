@@ -1,4 +1,9 @@
-
+/* eslint-disable no-unused-vars */
+/* eslint-disable valid-jsdoc */
+/**
+ *
+ * @param {*} vidUrl
+ */
 function videoDiv(vidUrl) {
     const div = createComponent(undefined, [], 'video');
     div.setAttribute('id', 'my-video');

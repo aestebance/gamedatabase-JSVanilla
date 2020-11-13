@@ -1,3 +1,6 @@
+/* eslint-disable valid-jsdoc */
+/* eslint-disable max-len */
+/* eslint-disable no-unused-vars */
 /**
  *
  */
@@ -8,6 +11,7 @@ function hiddeDropDown() {
 /**
  *
  * @param {*} arr
+ * @param {*} clear
  */
 function activateDropDown(arr, clear = false) {
     const dd = document.getElementById('dropdown');
@@ -64,7 +68,7 @@ function showLoading(loading = true) {
 }
 
 /**
- *
+ * 
  */
 function createAlbum() {
     const album = createComponent(undefined, [], 'div');

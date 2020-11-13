@@ -1,3 +1,10 @@
+/* eslint-disable require-jsdoc */
+/* eslint-disable max-len */
+/* eslint-disable no-unused-vars */
+
+/**
+ *
+ */
 class Loading {
     constructor(loadingText = 'loading....') {
         const divBorder = createComponent(undefined, [{'key': 'id', 'value': 'loading'}], 'div');

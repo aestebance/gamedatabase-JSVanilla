@@ -1,3 +1,9 @@
+/* eslint-disable require-jsdoc */
+/* eslint-disable no-unused-vars */
+
+/**
+ *
+ */
 class Game {
     constructor(json) {
         this.id = json.id;

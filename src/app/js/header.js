@@ -1,3 +1,9 @@
+/* eslint-disable max-len */
+/* eslint-disable require-jsdoc */
+/* eslint-disable no-unused-vars */
+/**
+ *
+ */
 class Header {
     constructor(callback) {
         const header = createComponent(undefined, [], 'div');

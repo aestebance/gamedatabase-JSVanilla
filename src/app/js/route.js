@@ -1,3 +1,9 @@
+/* eslint-disable no-unused-vars */
+/**
+ *
+ * @param {*} route
+ * @param {*} data
+ */
 function router(route, data = null) {
     renderLayout(function() {
         window.addEventListener('scroll', scrollEventListener);

@@ -1,5 +1,11 @@
+/* eslint-disable max-len */
+/* eslint-disable require-jsdoc */
+/* eslint-disable no-unused-vars */
+/* eslint-disable linebreak-style */
+/**
+ *
+ */
 class Navbar {
-    container;
 
     constructor(callback) {
         const container = createComponent(undefined, [], 'div');

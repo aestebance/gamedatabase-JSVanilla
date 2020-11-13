@@ -1,22 +1,34 @@
+/* eslint-disable require-jsdoc */
+/* eslint-disable no-unused-vars */
+/**
+ *
+ */
 class GameComponent {
     constructor(game, callback) {
         const col = createComponent(undefined, [], 'div');
         col.className = 'col-md-4';
         const card = createComponent(undefined, [], 'div');
         card.className = 'card mb-4 shadow-sm text-white mb-3 bg-dark';
-        const img = createComponent(undefined, [{'key': 'src', 'value': game.backgroundImage}, {'key': 'alt', 'value': game.name}], 'img');
+        const img = createComponent(undefined, [
+            {'key': 'src', 'value': game.backgroundImage},
+            {'key': 'alt', 'value': game.name}], 'img');
+
         img.className = 'bd-placeholder-img card-img-top';
         const cardBody = createComponent(undefined, [], 'div');
         cardBody.className = 'card-body text-center';
         const cardPlatforms = createComponent(undefined, [], 'div');
         cardPlatforms.className = 'card-platforms text-left';
+
         if (game.pPlatforms != undefined) {
             game.pPlatforms.forEach((element) => {
                 let value = '';
-                (platforms[element.platform.id]['url'] != undefined)? value = platforms[element.platform.id]['url'] : null;
+                (platforms[element.platform.id]['url'] != undefined)?
+                    value = platforms[element.platform.id]['url'] : null;
+
                 const platform = createComponent(undefined, [], 'div');
                 platform.setAttribute('style', value);
-                platform.setAttribute('title', platforms[element.platform.id]['name']);
+                platform.setAttribute('title',
+                    platforms[element.platform.id]['name']);
                 platform.className = 'platform';
                 cardPlatforms.appendChild(platform);
             });
