@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 /* eslint-disable valid-jsdoc */
 /* eslint-disable max-len */
 /* eslint-disable no-unused-vars */
@@ -23,6 +24,15 @@ function showModal(game, clear=false) {
         img.className = 'img-modal';
         imgDiv.appendChild(img);
         mBody.appendChild(imgDiv);
+    }
+    if (g.released) {
+        const released = new Date(g.released);
+        const button = createComponent(undefined, [], 'button');
+        button.className = 'btn btn-outline-warning';
+        button.innerText = 'Released on: ' + released.toLocaleDateString('es-ES');
+        button.setAttribute('type', 'button');
+        button.setAttribute('disabled', '');
+        mBody.appendChild(button);
     }
     if (g.description) {
         const textDiv = createComponent(undefined, [], 'div');
