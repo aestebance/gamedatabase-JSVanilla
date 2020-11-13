@@ -2,6 +2,13 @@
 /* eslint-disable valid-jsdoc */
 /**
  *
+ * @param {*} e
+ */
+function clearModal(e) {
+    document.getElementById('mBody').innerHTML = '';
+}
+/**
+ *
  * @param {*} vidUrl
  */
 function videoDiv(vidUrl) {
@@ -14,29 +21,10 @@ function videoDiv(vidUrl) {
     div.setAttribute('controls', '');
 
     const source = createComponent(undefined, [], 'source');
-    source.setAttribute('src', 'https://media.rawg.io/media/stories/d6e/d6e9068e5fb35421f00728309550df0a.mp4');
+    source.setAttribute('src', vidUrl);
     source.setAttribute('type', 'video/mp4');
     div.appendChild(source);
     return div;
-    /*  <video
-    id="my-video"
-    class="video-js"
-    controls
-    preload="auto"
-    width="640"
-    height="264"
-    poster=""
-    data-setup="{}"
-  >
-    <source src="https://media.rawg.io/media/stories/d6e/d6e9068e5fb35421f00728309550df0a.mp4" type="video/mp4" />
-    <p class="vjs-no-js">
-      To view this video please enable JavaScript, and consider upgrading to a
-      web browser that
-      <a href="https://videojs.com/html5-video-support/" target="_blank"
-        >supports HTML5 video</a
-      >
-    </p>
-  </video>*/
 }
 
 /**

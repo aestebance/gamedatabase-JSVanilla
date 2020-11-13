@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 /* eslint-disable max-len */
 /* eslint-disable require-jsdoc */
 /* eslint-disable no-unused-vars */
@@ -6,7 +7,6 @@
  *
  */
 class Navbar {
-
     constructor(callback) {
         const container = createComponent(undefined, [], 'div');
         container.className = 'container';
@@ -21,7 +21,7 @@ class Navbar {
         navbar.appendChild(divnav);
 
         const ul = createComponent(undefined, [], 'ul');
-        ul.className = "navbar-nav mr-auto";
+        ul.className = 'navbar-nav mr-auto';
         ul.setAttribute('id', 'routes');
         divnav.appendChild(ul);
 
@@ -75,11 +75,11 @@ class Navbar {
         navbar.appendChild(divDrop);
 
         const button = createComponent(undefined, [
-            {'key' : 'type', 'value' : 'button'},
-            {'key' : 'id', 'value' : 'dropdownMenuButton'},
-            {'key' : 'data-toggle', 'value' : 'dropdown'},
-            {'key' : 'aria-haspopup', 'value' : 'true'},
-            {'key' : 'aria-expanded', 'value' : 'false'},
+            {'key': 'type', 'value': 'button'},
+            {'key': 'id', 'value': 'dropdownMenuButton'},
+            {'key': 'data-toggle', 'value': 'dropdown'},
+            {'key': 'aria-haspopup', 'value': 'true'},
+            {'key': 'aria-expanded', 'value': 'false'},
         ], 'button');
         button.className = 'btn btn-secondary dropdown-toggle hidden';
         divDrop.appendChild(button);
@@ -98,11 +98,11 @@ class Navbar {
         navbar.appendChild(orderDrop);
 
         const buttonOrder = createComponent(undefined, [
-            {'key' : 'type', 'value' : 'button'},
-            {'key' : 'id', 'value' : 'orderButton'},
-            {'key' : 'data-toggle', 'value' : 'dropdown'},
-            {'key' : 'aria-haspopup', 'value' : 'true'},
-            {'key' : 'aria-expanded', 'value' : 'false'},
+            {'key': 'type', 'value': 'button'},
+            {'key': 'id', 'value': 'orderButton'},
+            {'key': 'data-toggle', 'value': 'dropdown'},
+            {'key': 'aria-haspopup', 'value': 'true'},
+            {'key': 'aria-expanded', 'value': 'false'},
         ], 'button');
         buttonOrder.className = 'btn btn-secondary dropdown-toggle';
         orderDrop.appendChild(buttonOrder);
@@ -116,8 +116,8 @@ class Navbar {
         orderDrop.appendChild(orderMenu);
 
         const arr = ['Default', 'name[A-Z]', 'name[Z-A]', 'released', 'added', 'created', 'rating'];
-        arr.forEach(element => {
-            const a = createComponent(undefined,[],'a');
+        arr.forEach((element) => {
+            const a = createComponent(undefined, [], 'a');
             a.classList = 'dropdown-item';
             a.setAttribute('href', '#');
             a.innerText = element;
@@ -125,6 +125,7 @@ class Navbar {
                 const db = document.getElementById('orderButton');
                 db.innerText = e.srcElement.innerText;
                 if (e.srcElement.innerText === 'Default') {
+                    db.innerText = 'Order by:';
                     ordering = null;
                 } else if (e.srcElement.innerText === 'name[A-Z]') {
                     ordering = 'name';

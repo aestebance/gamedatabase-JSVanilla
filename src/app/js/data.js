@@ -1,9 +1,5 @@
 /* eslint-disable prefer-const */
 /* eslint-disable no-unused-vars */
-let url = 'https://api.rawg.io/api/games?page_size=18';
-let next = null;
-let ordering = null;
-
 /**
  *
  * @param {*} rUrl

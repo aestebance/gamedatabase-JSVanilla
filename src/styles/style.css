@@ -1,3 +1,40 @@
+.video-js {
+    margin: auto;
+    background-color: #343a40 !important;
+}
+
+.textDiv {
+    margin-top: 20px;
+    text-align: justify;
+}
+
+.listDiv {
+    width: 100%;
+}
+
+.genreDiv {
+    display: inline-block;
+    width: 50%;
+}
+
+.platformsDiv {
+    display: inline-block;
+    width: 50%;
+}
+
+.textDescription {
+    font-weight: bold;
+}
+
+.img-modal {
+    margin: auto;
+}
+
+.img-modal {
+    width: 300px;
+    height: 150px;
+}
+
 .spinner-border {
     width: 7rem !important;
     height: 7rem !important;
@@ -111,4 +148,28 @@ li.nav-item {
 
 .dropdown {
     margin-left: 20px;
+}
+
+.list-group {
+    margin-left: 20px;
+}
+
+.imgDiv {
+    margin-top: 30px;
+}
+
+.imgMin {
+    width: 370px;
+    height: 200px;
+    margin: 5px;
+}
+
+.StoreDiv {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.btnmodal {
+    margin-right: 10px;
+    display: inline-block;
 }

@@ -1,5 +1,10 @@
+/* eslint-disable prefer-const */
 /* eslint-disable no-unused-vars */
 /* eslint-disable max-len */
+let url = 'https://api.rawg.io/api/games?page_size=18';
+let next = null;
+let ordering = null;
+
 const platforms = {
     1: {
         'name': 'PC',

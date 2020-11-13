@@ -4,10 +4,8 @@
  * @param {*} e
  */
 function createfrontFrame(e) {
-    console.log(e);
-    $('#exampleModal').modal('show');
-    // document.getElementById('app').innerHTML = '';
-    // l.appendChild(videoDiv(''));
+    showLoading();
+    httpRequest('https://api.rawg.io/api/games/' + e.srcElement.id, showModal, false, false);
 }
 
 /**

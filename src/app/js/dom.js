@@ -3,6 +3,116 @@
 /* eslint-disable no-unused-vars */
 /**
  *
+ * @param {*} game
+ * @param {*} clear
+ */
+function showModal(game, clear=false) {
+    const g = new Game(game);
+
+    const mHeader = document.getElementById('staticBackdropLabel');
+    mHeader.innerText = g.name;
+    const mBody = document.getElementById('mBody');
+    if (g.clips) {
+        mBody.appendChild(videoDiv(g.clips.clip));
+    } else {
+        const imgDiv = createComponent(undefined, [], 'div');
+        imgDiv.className = 'img-modal';
+        const img = createComponent(undefined, [], 'img');
+        img.setAttribute('src', g.backgroundImage);
+        img.setAttribute('alt', g.name);
+        img.className = 'img-modal';
+        imgDiv.appendChild(img);
+        mBody.appendChild(imgDiv);
+    }
+    if (g.description) {
+        const textDiv = createComponent(undefined, [], 'div');
+        textDiv.className = 'textDiv';
+        textDiv.innerHTML = '<span class="textDescription">Description: </span>' + g.description;
+        mBody.appendChild(textDiv);
+    }
+
+    const listDiv = createComponent(undefined, [], 'div');
+    listDiv.className = 'listDiv';
+    const genreDiv = createComponent(undefined, [], 'div');
+    genreDiv.className = 'genreDiv';
+    const platformsDiv = createComponent(undefined, [], 'div');
+    platformsDiv.className = 'platformsDiv';
+    mBody.appendChild(listDiv);
+    listDiv.appendChild(genreDiv);
+    listDiv.appendChild(platformsDiv);
+
+    if (g.genres) {
+        const ulGenre = createComponent(undefined, [], 'ul');
+        ulGenre.className = 'list-group';
+        const genLi = createComponent(undefined, [], 'li');
+        genLi.className = 'list-group-item list-group-item-dark active';
+        genLi.innerText = 'Genres:';
+        ulGenre.appendChild(genLi);
+        g.genres.forEach((element) =>{
+            const li = createComponent(undefined, [], 'li');
+            const litext = createComponent(element.name);
+            li.appendChild(litext);
+            li.className = 'list-group-item list-group-item-dark';
+            ulGenre.appendChild(li);
+        });
+        genreDiv.appendChild(ulGenre);
+    }
+
+    if (g.platforms) {
+        const ulPlatforms = createComponent(undefined, [], 'ul');
+        ulPlatforms.className = 'list-group';
+        const platLi = createComponent(undefined, [], 'li');
+        platLi.className = 'list-group-item list-group-item-dark active';
+        platLi.innerText = 'Platforms:';
+        ulPlatforms.appendChild(platLi);
+        g.platforms.forEach((element)=> {
+            const li = createComponent(undefined, [], 'li');
+            const litext = createComponent(element.platform.name);
+            li.appendChild(litext);
+            li.className = 'list-group-item list-group-item-dark';
+            ulPlatforms.appendChild(li);
+        });
+
+        platformsDiv.append(ulPlatforms);
+    }
+    const imgDiv = createComponent(undefined, [], 'div');
+    imgDiv.className = 'imgDiv';
+    mBody.appendChild(imgDiv);
+    const img1 = createComponent(undefined, [], 'img');
+    img1.setAttribute('src', g.backgroundImage);
+    img1.className = 'rounded float-left imgMin';
+    imgDiv.appendChild(img1);
+    const img2 = createComponent(undefined, [], 'img');
+    img2.setAttribute('src', g.backgroundImage2);
+    img2.className = 'rounded float-right imgMin';
+    imgDiv.appendChild(img2);
+
+    const storeDiv = createComponent(undefined, [], 'div');
+    storeDiv.className = 'StoreDiv';
+    mBody.appendChild(storeDiv);
+
+    if (g.stores) {
+        const pStore = createComponent(undefined, [], 'p');
+        pStore.innerText = 'Stores:';
+        storeDiv.appendChild(pStore);
+        g.stores.forEach((element)=> {
+            const a = createComponent(undefined, [], 'a');
+            a.setAttribute('href', element.url);
+            a.setAttribute('target', '_blank');
+            const button = createComponent(undefined, [], 'button');
+            button.className = 'btn btn-secondary btnmodal';
+            button.innerText = element.store.name;
+            button.setAttribute('type', 'button');
+            a.appendChild(button);
+            storeDiv.appendChild(a);
+        });
+    }
+
+    $('#modal').modal('show');
+    showLoading(false);
+}
+/**
+ *
  */
 function hiddeDropDown() {
     const db = document.getElementById('dropdownMenuButton');
@@ -68,7 +178,7 @@ function showLoading(loading = true) {
 }
 
 /**
- * 
+ *
  */
 function createAlbum() {
     const album = createComponent(undefined, [], 'div');
@@ -139,6 +249,10 @@ function showGames(gamesArr, clear = false) {
 function renderLayout(renderDone) {
     showLoading();
     const app = document.getElementById('app');
+    if (document.getElementById('modal') == null) {
+        const modal = new Modal();
+        app.appendChild(modal.get());
+    }
     if (document.querySelector('.header') == null) {
         const header = new Header(updateComponents);
         app.appendChild(header.get());

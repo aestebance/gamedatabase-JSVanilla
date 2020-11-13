@@ -4,6 +4,7 @@
   "main": "src/app/index.js",
   "scripts": {
     "lint": "eslint ./src/app/js --ext .js",
+    "lintclass": "eslint ./src/app/js/classes --ext .js",
     "fix": "eslint ./src/app/js --fix --ext .js"
   },
   "devDependencies": {
