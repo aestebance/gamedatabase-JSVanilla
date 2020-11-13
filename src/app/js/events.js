@@ -1,17 +1,17 @@
 /**
- * 
- * @param {*} e 
+ *
+ * @param {*} e
  */
 function createfrontFrame(e) {
     console.log(e);
     $('#exampleModal').modal('show');
-    //document.getElementById('app').innerHTML = '';
-   // l.appendChild(videoDiv(''));
+    // document.getElementById('app').innerHTML = '';
+    // l.appendChild(videoDiv(''));
 }
 
 /**
- * 
- * @param {*} e 
+ *
+ * @param {*} e
  */
 function clickDropDown(e) {
     showLoading();
@@ -23,24 +23,24 @@ function clickDropDown(e) {
 }
 
 /**
- * 
- * @param {*} e 
+ *
+ * @param {*} e
  */
 const navbarEvent = function(e) {
     e.preventDefault();
     e.stopPropagation();
     router('/' + e.srcElement.innerText);
-}
+};
 
 /**
- * 
- * @param {*} e 
+ *
+ * @param {*} e
  */
 const updateComponents = function(e) {
     e.preventDefault();
     e.stopPropagation();
     if (e.key === 'Enter') {
-        window.scrollTo(0,0);
+        window.scrollTo(0, 0);
         showLoading();
         next = null;
         (e.target.value.length >= 1)? httpRequest(url + '&search=' + e.target.value, showGames, true) : httpRequest(url, showGames, true);
@@ -49,8 +49,8 @@ const updateComponents = function(e) {
 };
 
 /**
- * 
- * @param {*} e 
+ *
+ * @param {*} e
  */
 function scrollEventListener(e) {
     const app = document.getElementsByTagName('html')[0];

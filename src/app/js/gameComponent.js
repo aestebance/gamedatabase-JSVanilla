@@ -11,7 +11,7 @@ class GameComponent {
         const cardPlatforms = createComponent(undefined, [], 'div');
         cardPlatforms.className = 'card-platforms text-left';
         if (game.pPlatforms != undefined) {
-            game.pPlatforms.forEach(element => {
+            game.pPlatforms.forEach((element) => {
                 let value = '';
                 (platforms[element.platform.id]['url'] != undefined)? value = platforms[element.platform.id]['url'] : null;
                 const platform = createComponent(undefined, [], 'div');
@@ -42,30 +42,29 @@ class GameComponent {
         let textG = '';
         let num = 0;
         if (game.genres) {
-            game.genres.forEach(element => {
+            game.genres.forEach((element) => {
                 if (textG.length < 15) {
-                    textG += element.name + ', '
+                    textG += element.name + ', ';
                 } else {
                     num++;
-                }  
+                }
             });
             textG = textG.slice(0, -2);
             if (num > 0) {
                 textG += ' + [' + num + ']';
             }
         }
-        
+
         const textGenre = createComponent('Genres: ' + textG);
         const stores = createComponent(undefined, [], 'p');
         stores.className = 'card-text text-left';
         let textS = '';
         num = 0;
         if (game.stores) {
-            game.stores.forEach(element => {
+            game.stores.forEach((element) => {
                 if (textS.length < 15) {
                     textS += element.store.name + ', ';
-                }
-                else {
+                } else {
                     num++;
                 }
             });
