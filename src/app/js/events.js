@@ -3,12 +3,10 @@
  * @param {*} e 
  */
 function createfrontFrame(e) {
-    const l = createComponent(undefined, [], 'div');
-    l.classList = 'prueba';
-    l.setAttribute('style', 'width: ' + (screen.width - 40) +'px; height: ' + (screen.height - 60) + 'px;');
-    div = document.getElementById('app');
-    div.appendChild(l);
-    l.appendChild(videoDiv(''));
+    console.log(e);
+    $('#exampleModal').modal('show');
+    //document.getElementById('app').innerHTML = '';
+   // l.appendChild(videoDiv(''));
 }
 
 /**
