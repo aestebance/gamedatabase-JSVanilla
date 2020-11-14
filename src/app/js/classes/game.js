@@ -14,7 +14,7 @@ class Game {
             this.description = null;
         (json.metacritic) ?
             this.metacritic = json.metacritic :
-            this.metacritic = 'n\a';
+            this.metacritic = 'n/a';
         (json.released) ? this.released = json.released : this.released = null;
         (json.background_image) ?
             this.backgroundImage = json.background_image :

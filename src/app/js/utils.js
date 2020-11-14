@@ -8,25 +8,6 @@
 function clearModal(e) {
     document.getElementById('mBody').innerHTML = '';
 }
-/**
- *
- * @param {*} vidUrl
- */
-function videoDiv(vidUrl) {
-    const div = createComponent(undefined, [], 'video');
-    div.setAttribute('id', 'my-video');
-    div.classList = 'video-js';
-    div.setAttribute('preload', 'auto');
-    div.setAttribute('width', '50%');
-    div.setAttribute('height', '50%');
-    div.setAttribute('controls', '');
-
-    const source = createComponent(undefined, [], 'source');
-    source.setAttribute('src', vidUrl);
-    source.setAttribute('type', 'video/mp4');
-    div.appendChild(source);
-    return div;
-}
 
 /**
  *

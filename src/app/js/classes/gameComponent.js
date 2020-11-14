@@ -10,11 +10,24 @@ class GameComponent {
         col.className = 'col-md-4';
         const card = createComponent(undefined, [], 'div');
         card.className = 'card mb-4 shadow-sm text-white mb-3 bg-dark';
-        const img = createComponent(undefined, [
-            {'key': 'src', 'value': game.backgroundImage},
-            {'key': 'alt', 'value': game.name}], 'img');
+        let media = '';
+        if (game.clips) {
+            media = createComponent(undefined, [], 'video');
+            media.setAttribute('src', game.clips.clip);
+            media.setAttribute('id', 'video');
+            media.addEventListener('mouseover', function() {
+                media.play();
+            });
+            media.addEventListener('mouseout', function() {
+                media.pause();
+            });
+        } else {
+            media = createComponent(undefined, [
+                {'key': 'src', 'value': game.backgroundImage},
+                {'key': 'alt', 'value': game.name}], 'img');
+        }
 
-        img.className = 'bd-placeholder-img card-img-top';
+        media.className = 'bd-placeholder-img card-img-top';
         const cardBody = createComponent(undefined, [], 'div');
         cardBody.className = 'card-body text-center';
         const cardPlatforms = createComponent(undefined, [], 'div');
@@ -94,7 +107,7 @@ class GameComponent {
         link.addEventListener('click', callback);
 
         col.appendChild(card);
-        card.appendChild(img);
+        card.appendChild(media);
         card.appendChild(cardBody);
         cardBody.appendChild(cardPlatforms);
         cardBody.appendChild(gameScore);

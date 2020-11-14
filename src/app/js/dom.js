@@ -14,7 +14,11 @@ function showModal(game, clear=false) {
     mHeader.innerText = g.name;
     const mBody = document.getElementById('mBody');
     if (g.clips) {
-        mBody.appendChild(videoDiv(g.clips.clip));
+        const media = createComponent(undefined, [], 'video');
+        media.setAttribute('src', g.clips.clip);
+        media.setAttribute('id', 'video');
+        media.setAttribute('controls', '');
+        mBody.appendChild(media);
     } else {
         const imgDiv = createComponent(undefined, [], 'div');
         imgDiv.className = 'img-modal';
@@ -25,14 +29,33 @@ function showModal(game, clear=false) {
         imgDiv.appendChild(img);
         mBody.appendChild(imgDiv);
     }
+
+    const divRelMeta = createComponent(undefined, [], 'div');
+    divRelMeta.className = 'divRelMeta';
+    mBody.appendChild(divRelMeta);
+
     if (g.released) {
+        const divReleased = createComponent(undefined, [], 'div');
+        divReleased.className = 'divReleased';
         const released = new Date(g.released);
         const button = createComponent(undefined, [], 'button');
         button.className = 'btn btn-outline-warning';
         button.innerText = 'Released on: ' + released.toLocaleDateString('es-ES');
         button.setAttribute('type', 'button');
         button.setAttribute('disabled', '');
-        mBody.appendChild(button);
+        divReleased.appendChild(button);
+        divRelMeta.appendChild(divReleased);
+    }
+
+    if (g.metacritic) {
+        const divMeta = createComponent(undefined, [], 'div');
+        divMeta.className = 'divMeta';
+        const button = createComponent(undefined, [], 'button');
+        button.className = 'btn btn-outline-success';
+        button.innerText = 'Metacritic: ' + g.metacritic;
+        button.setAttribute('type', 'button');
+        divMeta.appendChild(button);
+        divRelMeta.appendChild(divMeta);
     }
     if (g.description) {
         const textDiv = createComponent(undefined, [], 'div');
