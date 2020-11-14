@@ -9,9 +9,10 @@
  */
 function showModal(game, clear=false) {
     const g = new Game(game);
+    console.log(g);
 
     const mHeader = document.getElementById('staticBackdropLabel');
-    mHeader.innerText = g.name;
+    (g.name) ? mHeader.innerText = g.name : mHeader.innerText = 'n/a';
     const mBody = document.getElementById('mBody');
     if (g.clips) {
         const media = createComponent(undefined, [], 'video');
@@ -46,17 +47,16 @@ function showModal(game, clear=false) {
         divReleased.appendChild(button);
         divRelMeta.appendChild(divReleased);
     }
+    // No se comprueba porque no puede ser null al tener asignación en la clase
+    const divMeta = createComponent(undefined, [], 'div');
+    divMeta.className = 'divMeta';
+    const button = createComponent(undefined, [], 'button');
+    button.className = 'btn btn-outline-success';
+    button.innerText = 'Metacritic: ' + g.metacritic;
+    button.setAttribute('type', 'button');
+    divMeta.appendChild(button);
+    divRelMeta.appendChild(divMeta);
 
-    if (g.metacritic) {
-        const divMeta = createComponent(undefined, [], 'div');
-        divMeta.className = 'divMeta';
-        const button = createComponent(undefined, [], 'button');
-        button.className = 'btn btn-outline-success';
-        button.innerText = 'Metacritic: ' + g.metacritic;
-        button.setAttribute('type', 'button');
-        divMeta.appendChild(button);
-        divRelMeta.appendChild(divMeta);
-    }
     if (g.description) {
         const textDiv = createComponent(undefined, [], 'div');
         textDiv.className = 'textDiv';

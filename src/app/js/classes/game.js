@@ -43,5 +43,9 @@ class Game {
         (json.short_screenshots) ?
             this.screenshots = json.short_screenshots :
             this.screenshots = null;
+        (json.tags) ? this.tags = json.tags : this.tags = null;
+        (json.publishers) ?
+            this.publishers = json.publishers :
+            this.publishers = null;
     }
 }
