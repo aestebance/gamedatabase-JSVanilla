@@ -9,23 +9,24 @@
  */
 function showModal(game, clear=false) {
     const g = new Game(game);
-    console.log(g);
 
     const mHeader = document.getElementById('staticBackdropLabel');
     (g.name) ? mHeader.innerText = g.name : mHeader.innerText = 'n/a';
     const mBody = document.getElementById('mBody');
     if (g.clips) {
-        const media = createComponent(undefined, [], 'video');
-        media.setAttribute('src', g.clips.clip);
-        media.setAttribute('id', 'video');
-        media.setAttribute('controls', '');
+        const media = createComponent(undefined, [
+            {'key': 'src', 'value': g.clips.clip},
+            {'key': 'id', 'value': 'video'},
+            {'key': 'controls', 'value': 'controls'},
+        ], 'video');
         mBody.appendChild(media);
     } else {
         const imgDiv = createComponent(undefined, [], 'div');
         imgDiv.className = 'img-modal';
-        const img = createComponent(undefined, [], 'img');
-        img.setAttribute('src', g.backgroundImage);
-        img.setAttribute('alt', g.name);
+        const img = createComponent(undefined, [
+            {'key': 'src', 'value': g.backgroundImage},
+            {'key': 'alt', 'value': g.name},
+        ], 'img');
         img.className = 'img-modal';
         imgDiv.appendChild(img);
         mBody.appendChild(imgDiv);
@@ -39,21 +40,23 @@ function showModal(game, clear=false) {
         const divReleased = createComponent(undefined, [], 'div');
         divReleased.className = 'divReleased';
         const released = new Date(g.released);
-        const button = createComponent(undefined, [], 'button');
+        const button = createComponent(undefined, [
+            {'key': 'type', 'value': 'button'},
+            {'key': 'disabled', 'value': ''},
+        ], 'button');
         button.className = 'btn btn-outline-warning';
         button.innerText = 'Released on: ' + released.toLocaleDateString('es-ES');
-        button.setAttribute('type', 'button');
-        button.setAttribute('disabled', '');
         divReleased.appendChild(button);
         divRelMeta.appendChild(divReleased);
     }
     // No se comprueba porque no puede ser null al tener asignación en la clase
     const divMeta = createComponent(undefined, [], 'div');
     divMeta.className = 'divMeta';
-    const button = createComponent(undefined, [], 'button');
+    const button = createComponent(undefined, [
+        {'key': 'type', 'value': 'button'},
+    ], 'button');
     button.className = 'btn btn-outline-success';
     button.innerText = 'Metacritic: ' + g.metacritic;
-    button.setAttribute('type', 'button');
     divMeta.appendChild(button);
     divRelMeta.appendChild(divMeta);
 
@@ -111,12 +114,14 @@ function showModal(game, clear=false) {
     const imgDiv = createComponent(undefined, [], 'div');
     imgDiv.className = 'imgDiv';
     mBody.appendChild(imgDiv);
-    const img1 = createComponent(undefined, [], 'img');
-    img1.setAttribute('src', g.backgroundImage);
+    const img1 = createComponent(undefined, [
+        {'key': 'src', 'value': g.backgroundImage},
+    ], 'img');
     img1.className = 'rounded float-left imgMin';
     imgDiv.appendChild(img1);
-    const img2 = createComponent(undefined, [], 'img');
-    img2.setAttribute('src', g.backgroundImage2);
+    const img2 = createComponent(undefined, [
+        {'key': 'src', 'value': g.backgroundImage2},
+    ], 'img');
     img2.className = 'rounded float-right imgMin';
     imgDiv.appendChild(img2);
 
@@ -129,13 +134,15 @@ function showModal(game, clear=false) {
         pStore.innerText = 'Stores:';
         storeDiv.appendChild(pStore);
         g.stores.forEach((element)=> {
-            const a = createComponent(undefined, [], 'a');
-            a.setAttribute('href', element.url);
-            a.setAttribute('target', '_blank');
-            const button = createComponent(undefined, [], 'button');
+            const a = createComponent(undefined, [
+                {'key': 'href', 'value': element.url},
+                {'key': 'target', 'value': '_blank'},
+            ], 'a');
+            const button = createComponent(undefined, [
+                {'key': 'type', 'value': 'button'},
+            ], 'button');
             button.className = 'btn btn-secondary btnmodal';
             button.innerText = element.store.name;
-            button.setAttribute('type', 'button');
             a.appendChild(button);
             storeDiv.appendChild(a);
         });
@@ -169,10 +176,11 @@ function activateDropDown(arr, clear = false) {
     const div = dd.lastChild;
     div.innerHTML = '';
     arr.results.forEach((element) => {
-        const a = createComponent(undefined, [], 'a');
+        const a = createComponent(undefined, [
+            {'key': 'href', 'value': '#'},
+            {'key': 'id', 'value': element.id},
+        ], 'a');
         a.classList = 'dropdown-item';
-        a.setAttribute('href', '#');
-        a.setAttribute('id', element.id);
         a.innerText = element.name;
         a.addEventListener('click', clickDropDown);
         div.appendChild(a);
@@ -216,12 +224,14 @@ function showLoading(loading = true) {
 function createAlbum() {
     const album = createComponent(undefined, [], 'div');
     album.className = 'album py-5';
-    const container = createComponent(undefined, [], 'div');
+    const container = createComponent(undefined, [
+        {'key': 'id', 'value': 'container'},
+    ], 'div');
     container.className = 'container-lg';
-    container.setAttribute('id', 'container');
-    const row = createComponent(undefined, [], 'div');
+    const row = createComponent(undefined, [
+        {'key': 'id', 'value': 'row'},
+    ], 'div');
     row.className = 'row';
-    row.setAttribute('id', 'row');
     album.appendChild(container);
     container.appendChild(row);
     return album;

@@ -12,11 +12,15 @@ class GameComponent {
         card.className = 'card mb-4 shadow-sm text-white mb-3 bg-dark';
         let media = '';
         if (game.clips) {
-            media = createComponent(undefined, [], 'video');
-            media.setAttribute('src', game.clips.clip);
-            media.setAttribute('id', 'video');
+            media = createComponent(undefined, [
+                {'key': 'src', 'value': game.clips.clip},
+                {'key': 'id', 'video': game.clips.clip},
+                {'key': 'muted', 'true': game.clips.clip},
+                {'key': 'playsinline', 'true': game.clips.clip},
+                {'key': 'webkit-playsinline', 'true': game.clips.clip},
+            ], 'video');
             media.addEventListener('mouseover', function() {
-                media.play();
+                media.play().then((response)=>{}).catch((e)=>{});
             });
             media.addEventListener('mouseout', function() {
                 media.pause();
@@ -39,10 +43,11 @@ class GameComponent {
                 (platforms[element.platform.id]['url'] != undefined)?
                     value = platforms[element.platform.id]['url'] : null;
 
-                const platform = createComponent(undefined, [], 'div');
-                platform.setAttribute('style', value);
-                platform.setAttribute('title',
-                    platforms[element.platform.id]['name']);
+                const platform = createComponent(undefined, [
+                    {'key': 'style', 'value': value},
+                    {'key': 'title', 'value':
+                        platforms[element.platform.id]['name']},
+                ], 'div');
                 platform.className = 'platform';
                 cardPlatforms.appendChild(platform);
             });
@@ -100,10 +105,11 @@ class GameComponent {
             }
         }
         const textStores = createComponent('Stores: ' + textS);
-        const link = createComponent(undefined, [], 'a');
+        const link = createComponent(undefined, [
+            {'key': 'id', 'value': game.id},
+        ], 'a');
         link.className = 'btn btn-primary';
         const textLink = createComponent('More [+]');
-        link.setAttribute('id', game.id);
         link.addEventListener('click', callback);
 
         col.appendChild(card);

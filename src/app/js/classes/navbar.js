@@ -15,21 +15,24 @@ class Navbar {
         navbar.className = 'navbar navbar-expand-lg navbar-dark bg-black';
         container.appendChild(navbar);
 
-        const divnav = createComponent(undefined, [], 'div');
+        const divnav = createComponent(undefined, [
+            {'key': 'id', 'value': 'navbarSupportedContent'},
+        ], 'div');
         divnav.className = 'collapse navbar-collapse';
-        divnav.setAttribute('id', 'navbarSupportedContent');
         navbar.appendChild(divnav);
 
-        const ul = createComponent(undefined, [], 'ul');
+        const ul = createComponent(undefined, [
+            {'key': 'id', 'value': 'routes'},
+        ], 'ul');
         ul.className = 'navbar-nav mr-auto';
-        ul.setAttribute('id', 'routes');
         divnav.appendChild(ul);
 
         const li1 = createComponent(undefined, [], 'li');
         li1.className = 'nav-item active';
-        const a1 = createComponent(undefined, [], 'a');
+        const a1 = createComponent(undefined, [
+            {'key': 'href', 'value': '#'},
+        ], 'a');
         a1.className = 'nav-link';
-        a1.setAttribute('href', '#');
         const a1text = createComponent('All');
         ul.appendChild(li1);
         li1.appendChild(a1);
@@ -38,9 +41,10 @@ class Navbar {
 
         const li2 = createComponent(undefined, [], 'li');
         li2.className = 'nav-item';
-        const a2 = createComponent(undefined, [], 'a');
+        const a2 = createComponent(undefined, [
+            {'key': 'href', 'value': '#'},
+        ], 'a');
         a2.className = 'nav-link';
-        a2.setAttribute('href', '#');
         const a2text = createComponent('Genre');
         ul.appendChild(li2);
         li2.appendChild(a2);
@@ -49,9 +53,10 @@ class Navbar {
 
         const li3 = createComponent(undefined, [], 'li');
         li3.className = 'nav-item';
-        const a3 = createComponent(undefined, [], 'a');
+        const a3 = createComponent(undefined, [
+            {'key': 'href', 'value': '#'},
+        ], 'a');
         a3.className = 'nav-link';
-        a3.setAttribute('href', '#');
         const a3text = createComponent('Platform');
         ul.appendChild(li3);
         li3.appendChild(a3);
@@ -60,18 +65,20 @@ class Navbar {
 
         const li4 = createComponent(undefined, [], 'li');
         li4.className = 'nav-item';
-        const a4 = createComponent(undefined, [], 'a');
+        const a4 = createComponent(undefined, [
+            {'key': 'href', 'value': '#'},
+        ], 'a');
         a4.className = 'nav-link';
-        a4.setAttribute('href', '#');
         const a4text = createComponent('Store');
         ul.appendChild(li4);
         li4.appendChild(a4);
         a4.appendChild(a4text);
         a4.addEventListener('click', callback);
 
-        const divDrop = createComponent(undefined, [], 'div');
+        const divDrop = createComponent(undefined, [
+            {'key': 'id', 'value': 'dropdown'},
+        ], 'div');
         divDrop.className = 'dropdown';
-        divDrop.setAttribute('id', 'dropdown');
         navbar.appendChild(divDrop);
 
         const button = createComponent(undefined, [
@@ -87,14 +94,16 @@ class Navbar {
         const buttonText = createComponent('Dropdown button ');
         button.appendChild(buttonText);
 
-        const dropMenu = createComponent(undefined, [], 'div');
+        const dropMenu = createComponent(undefined, [
+            {'key': 'aria-labelledby', 'value': 'dropdownMenuButton'},
+        ], 'div');
         dropMenu.className = 'dropdown-menu';
-        dropMenu.setAttribute('aria-labelledby', 'dropdownMenuButton');
         divDrop.appendChild(dropMenu);
 
-        const orderDrop = createComponent(undefined, [], 'div');
+        const orderDrop = createComponent(undefined, [
+            {'key': 'id', 'value': 'ordering'},
+        ], 'div');
         orderDrop.className = 'dropdown';
-        orderDrop.setAttribute('id', 'ordering');
         navbar.appendChild(orderDrop);
 
         const buttonOrder = createComponent(undefined, [
@@ -110,16 +119,18 @@ class Navbar {
         const orderButtonText = createComponent('Order by:');
         buttonOrder.appendChild(orderButtonText);
 
-        const orderMenu = createComponent(undefined, [], 'div');
+        const orderMenu = createComponent(undefined, [
+            {'key': 'aria-labelledby', 'value': 'dropdownMenuButton'},
+        ], 'div');
         orderMenu.className = 'dropdown-menu';
-        orderMenu.setAttribute('aria-labelledby', 'dropdownMenuButton');
         orderDrop.appendChild(orderMenu);
 
         const arr = ['Default', 'name[A-Z]', 'name[Z-A]', 'released', 'added', 'created', 'rating'];
         arr.forEach((element) => {
-            const a = createComponent(undefined, [], 'a');
+            const a = createComponent(undefined, [
+                {'key': 'href', 'value': '#'},
+            ], 'a');
             a.classList = 'dropdown-item';
-            a.setAttribute('href', '#');
             a.innerText = element;
             a.addEventListener('click', function(e) {
                 const db = document.getElementById('orderButton');

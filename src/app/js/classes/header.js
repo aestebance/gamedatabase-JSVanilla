@@ -7,9 +7,10 @@
  */
 class Header {
     constructor(callback) {
-        const header = createComponent(undefined, [], 'div');
+        const header = createComponent(undefined, [
+            {'key': 'id', 'value': 'header'},
+        ], 'div');
         header.className = 'header fixed-top';
-        header.setAttribute('id', 'header');
         const component = createComponent(undefined, [], 'div');
         component.className = 'nav';
         const search = createComponent(undefined, [], 'div');
@@ -17,10 +18,10 @@ class Header {
         const input = createComponent(undefined, [{'key': 'type', 'value': 'text'},
             {'key': 'placeholder', 'value': 'Game to search... (press enter)'},
             {'key': 'arial-label', 'value': 'Game to search... (press enter)'},
-            {'key': 'arial-describedby', 'value': 'basic-addon2'}], 'input');
+            {'key': 'arial-describedby', 'value': 'basic-addon2'},
+            {'key': 'id', 'value': 'form-control'},
+        ], 'input');
         input.className = 'form-control text-white bg-dark';
-        input.setAttribute('id', 'form-control');
-
         input.addEventListener('keyup', callback);
 
         header.appendChild(component);

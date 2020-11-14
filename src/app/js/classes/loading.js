@@ -8,11 +8,14 @@
  */
 class Loading {
     constructor(loadingText = 'loading....') {
-        const divBorder = createComponent(undefined, [{'key': 'id', 'value': 'loading'}], 'div');
+        const divBorder = createComponent(undefined, [
+            {'key': 'id', 'value': 'loading'},
+        ], 'div');
         divBorder.className = 'd-flex justify-content-center';
-        const border = createComponent(undefined, [], 'div');
+        const border = createComponent(undefined, [
+            {'key': 'role', 'value': 'status'},
+        ], 'div');
         border.className = 'spinner-border text-light m-5';
-        border.setAttribute('role', 'status');
         const loading = createComponent(undefined, [], 'span');
         loading.className = 'sr-only';
         const textLoading = createComponent(loadingText);

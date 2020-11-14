@@ -23,16 +23,18 @@ class Modal {
         const mDialog = createComponent(undefined, [], 'div');
         mDialog.className = 'modal-dialog modal-lg';
         modal.appendChild(mDialog);
-        const mContent = createComponent(undefined, [], 'div');
+        const mContent = createComponent(undefined, [
+            {'key': 'id', 'value': 'mContent'},
+        ], 'div');
         mContent.className = 'modal-content bg-dark text-white';
-        mContent.setAttribute('id', 'mContent');
         mDialog.appendChild(mContent);
         const mHeader = createComponent(undefined, [], 'div');
         mHeader.className = 'modal-header';
         mContent.appendChild(mHeader);
-        const h3 = createComponent(undefined, [], 'h3');
+        const h3 = createComponent(undefined, [
+            {'key': 'id', 'value': 'staticBackdropLabel'},
+        ], 'h3');
         h3.className = 'modal-title';
-        h3.setAttribute('id', 'staticBackdropLabel');
         h3.innerText = 'Undefined';
         mHeader.appendChild(h3);
         const but = createComponent(undefined, [
@@ -43,21 +45,24 @@ class Modal {
         but.className = 'close text-white';
         but.addEventListener('click', clearModal);
         mHeader.appendChild(but);
-        const span = createComponent(undefined, [], 'span');
-        span.setAttribute('aria-hiden', 'true');
+        const span = createComponent(undefined, [
+            {'key': 'aria-hidden', 'value': 'true'},
+        ], 'span');
         span.innerText = 'X';
         but.appendChild(span);
-        const mBody = createComponent(undefined, [], 'div');
+        const mBody = createComponent(undefined, [
+            {'key': 'id', 'value': 'mBody'},
+        ], 'div');
         mBody.className = 'modal-body';
-        mBody.setAttribute('id', 'mBody');
         mContent.appendChild(mBody);
         const mFooter = createComponent(undefined, [], 'div');
         mFooter.className = 'modal-footer';
         mContent.appendChild(mFooter);
-        const but2 = createComponent(undefined, [], 'button');
+        const but2 = createComponent(undefined, [
+            {'key': 'type', 'value': 'button'},
+            {'key': 'data-dismiss', 'value': 'modal'},
+        ], 'button');
         but2.className = 'btn btn-primary';
-        but2.setAttribute('type', 'button');
-        but2.setAttribute('data-dismiss', 'modal');
         but2.innerText = 'Close';
         but2.addEventListener('click', clearModal);
         mFooter.appendChild(but2);
