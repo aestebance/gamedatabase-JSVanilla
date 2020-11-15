@@ -1,11 +1,10 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable no-unused-vars */
 /**
- *
- * @param {*} route
- * @param {*} data
+ * Funcion que enruta en función del enlace pinchado
+ * @param {*} route Dirección de la ruta que hay que mostrar
  */
-function router(route, data = null) {
+function router(route) {
     renderLayout(function() {
         window.addEventListener('scroll', scrollEventListener);
 

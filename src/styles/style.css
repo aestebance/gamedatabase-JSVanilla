@@ -11,16 +11,17 @@
 .listDiv {
     width: 98%;
     text-align: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: stretch;
+    align-items: flex-start;
 }
 
-.genreDiv {
-    display: inline-block;
+.childDiv {
     width: 50%;
-}
-
-.platformsDiv {
-    display: inline-block;
-    width: 50%;
+    margin-top: 20px;
+    align-self: stretch;
 }
 
 .textDescription {
@@ -152,14 +153,22 @@ li.nav-item {
     margin-left: 20px;
 }
 
+.divImages {
+    width: 98%;
+    display: flex;
+    align-content: flex-start;
+    margin: 30px 0 0 0;
+    padding: 0px;
+}
+
 .imgDiv {
-    margin-top: 30px;
+    max-width: 50%;
+    align-self: center;
+    padding: 10px;
 }
 
 .imgMin {
-    width: 370px;
-    height: 200px;
-    margin: 5px;
+    max-width: 95%;
 }
 
 .StoreDiv {

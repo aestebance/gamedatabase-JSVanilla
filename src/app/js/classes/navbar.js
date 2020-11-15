@@ -4,7 +4,9 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable linebreak-style */
 /**
- *
+ * Clase que crea un componente navbar para ser mostrado como parte fija
+ * de la página. El constructor recibe una función callback como parámetro
+ * que es llamada cuando se pincha en algún enlace.
  */
 class Navbar {
     constructor(callback) {
@@ -153,7 +155,9 @@ class Navbar {
 
         this.container = container;
     }
-
+    /**
+     * @return {component} Devuelve un componente navbar.
+     */
     get() {
         return this.container;
     }

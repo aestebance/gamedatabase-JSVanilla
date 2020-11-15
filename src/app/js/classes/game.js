@@ -3,7 +3,7 @@
 /* eslint-disable no-unused-vars */
 
 /**
- *
+ * Clase Game que recibe un json de la API y crea un objeto con los datos
  */
 class Game {
     constructor(json) {

@@ -2,16 +2,17 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable valid-jsdoc */
 /**
- *
- * @param {*} e
+ * Función que se llama para borrar el Modal para mostrar otro nuevo
+ * @param {*} e Variable con el evento
  */
 function clearModal(e) {
     document.getElementById('mBody').innerHTML = '';
 }
 
 /**
- *
- * @param {*} text
+ * Función que se utiliza para borrar los últimos dígitos de la url
+ * pasada como parámetro
+ * @param {*} text Url
  */
 function removeNumbersUrl(text) {
     let j = 0;

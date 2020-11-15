@@ -3,13 +3,11 @@
 /* eslint-disable max-len */
 /* eslint-disable no-unused-vars */
 /**
- *
- * @param {*} game
- * @param {*} clear
+ * Función que rellena y muestra el modal cuando se pincha en un juego
+ * @param {*} game variable de tipo Game con los datos del juego
  */
-function showModal(game, clear=false) {
+function showModal(game) {
     const g = new Game(game);
-
     const mHeader = document.getElementById('staticBackdropLabel');
     (g.name) ? mHeader.innerText = g.name : mHeader.innerText = 'n/a';
     const mBody = document.getElementById('mBody');
@@ -36,28 +34,33 @@ function showModal(game, clear=false) {
     divRelMeta.className = 'divRelMeta';
     mBody.appendChild(divRelMeta);
 
+    const divReleased = createComponent(undefined, [], 'div');
+    divReleased.className = 'divReleased';
+    let released = '';
     if (g.released) {
-        const divReleased = createComponent(undefined, [], 'div');
-        divReleased.className = 'divReleased';
-        const released = new Date(g.released);
-        const button = createComponent(undefined, [
-            {'key': 'type', 'value': 'button'},
-            {'key': 'disabled', 'value': ''},
-        ], 'button');
-        button.className = 'btn btn-outline-warning';
-        button.innerText = 'Released on: ' + released.toLocaleDateString('es-ES');
-        divReleased.appendChild(button);
-        divRelMeta.appendChild(divReleased);
+        released = new Date(g.released);
+        released = 'Released on: ' + released.toLocaleDateString('es-ES');
+    } else {
+        released = 'Released on: n/a';
     }
+
+    const button = createComponent(undefined, [
+        {'key': 'type', 'value': 'button'},
+        {'key': 'disabled', 'value': ''},
+    ], 'button');
+    button.className = 'btn btn-outline-warning';
+    button.innerText = released;
+    divReleased.appendChild(button);
+    divRelMeta.appendChild(divReleased);
     // No se comprueba porque no puede ser null al tener asignación en la clase
     const divMeta = createComponent(undefined, [], 'div');
     divMeta.className = 'divMeta';
-    const button = createComponent(undefined, [
+    const button2 = createComponent(undefined, [
         {'key': 'type', 'value': 'button'},
     ], 'button');
-    button.className = 'btn btn-outline-success';
-    button.innerText = 'Metacritic: ' + g.metacritic;
-    divMeta.appendChild(button);
+    button2.className = 'btn btn-outline-success';
+    button2.innerText = 'Metacritic: ' + g.metacritic;
+    divMeta.appendChild(button2);
     divRelMeta.appendChild(divMeta);
 
     if (g.description) {
@@ -69,61 +72,54 @@ function showModal(game, clear=false) {
 
     const listDiv = createComponent(undefined, [], 'div');
     listDiv.className = 'listDiv';
-    const genreDiv = createComponent(undefined, [], 'div');
-    genreDiv.className = 'genreDiv';
-    const platformsDiv = createComponent(undefined, [], 'div');
-    platformsDiv.className = 'platformsDiv';
     mBody.appendChild(listDiv);
-    listDiv.appendChild(genreDiv);
-    listDiv.appendChild(platformsDiv);
-
-    if (g.genres) {
-        const ulGenre = createComponent(undefined, [], 'ul');
-        ulGenre.className = 'list-group';
-        const genLi = createComponent(undefined, [], 'li');
-        genLi.className = 'list-group-item list-group-item-dark active';
-        genLi.innerText = 'Genres:';
-        ulGenre.appendChild(genLi);
-        g.genres.forEach((element) =>{
+    const lists = ['genres', 'platforms', 'publishers', 'developers'];
+    lists.forEach((element) => {
+        if (g[element].length > 0) {
+            const childDiv = createComponent(undefined, [], 'div');
+            childDiv.className = 'childDiv';
+            listDiv.appendChild(childDiv);
+            const ul = createComponent(undefined, [], 'ul');
+            ul.className = 'list-group';
             const li = createComponent(undefined, [], 'li');
-            const litext = createComponent(element.name);
-            li.appendChild(litext);
-            li.className = 'list-group-item list-group-item-dark';
-            ulGenre.appendChild(li);
-        });
-        genreDiv.appendChild(ulGenre);
-    }
+            li.className = 'list-group-item list-group-item-dark active';
+            li.innerText = element + ':';
+            ul.appendChild(li);
+            g[element].forEach((e)=>{
+                const subli = createComponent(undefined, [], 'li');
+                let liText = '';
+                if (element === 'platforms') {
+                    liText = createComponent(e.platform.name);
+                } else {
+                    liText = createComponent(e.name);
+                }
+                subli.appendChild(liText);
+                subli.className = 'list-group-item list-group-item-dark';
+                ul.appendChild(subli);
+            });
+            childDiv.appendChild(ul);
+        }
+    });
 
-    if (g.platforms) {
-        const ulPlatforms = createComponent(undefined, [], 'ul');
-        ulPlatforms.className = 'list-group';
-        const platLi = createComponent(undefined, [], 'li');
-        platLi.className = 'list-group-item list-group-item-dark active';
-        platLi.innerText = 'Platforms:';
-        ulPlatforms.appendChild(platLi);
-        g.platforms.forEach((element)=> {
-            const li = createComponent(undefined, [], 'li');
-            const litext = createComponent(element.platform.name);
-            li.appendChild(litext);
-            li.className = 'list-group-item list-group-item-dark';
-            ulPlatforms.appendChild(li);
-        });
-
-        platformsDiv.append(ulPlatforms);
-    }
-    const imgDiv = createComponent(undefined, [], 'div');
-    imgDiv.className = 'imgDiv';
-    mBody.appendChild(imgDiv);
+    const divImages = createComponent(undefined, [], 'div');
+    divImages.className = 'divImages';
+    mBody.appendChild(divImages);
+    const imgDiv1 = createComponent(undefined, [], 'div');
+    imgDiv1.className = 'imgDiv';
+    divImages.appendChild(imgDiv1);
     const img1 = createComponent(undefined, [
         {'key': 'src', 'value': g.backgroundImage},
     ], 'img');
-    img1.className = 'rounded float-left imgMin';
-    imgDiv.appendChild(img1);
+    img1.className = 'imgMin';
+    imgDiv1.appendChild(img1);
+    const imgDiv2 = createComponent(undefined, [], 'div');
+    imgDiv2.className = 'imgDiv';
+    divImages.appendChild(imgDiv2);
     const img2 = createComponent(undefined, [
         {'key': 'src', 'value': g.backgroundImage2},
     ], 'img');
-    img2.className = 'rounded float-right imgMin';
-    imgDiv.appendChild(img2);
+    img2.className = 'imgMin';
+    imgDiv2.appendChild(img2);
 
     const storeDiv = createComponent(undefined, [], 'div');
     storeDiv.className = 'StoreDiv';
@@ -152,16 +148,16 @@ function showModal(game, clear=false) {
     showLoading(false);
 }
 /**
- *
+ * Función que oculta el dropDown cuando se está en la página principal
  */
 function hiddeDropDown() {
     const db = document.getElementById('dropdownMenuButton');
     db.classList.add('hidden');
 }
 /**
- *
- * @param {*} arr
- * @param {*} clear
+ * Función que activa el drowndown y lo rellena con los datos del array
+ * @param {*} arr Datos a mostrar en el dropdown
+ * @param {*} clear Indica si se deben borrar los juegos.
  */
 function activateDropDown(arr, clear = false) {
     const dd = document.getElementById('dropdown');
@@ -192,8 +188,8 @@ function activateDropDown(arr, clear = false) {
     }
 }
 /**
- *
- * @param {*} route
+ * Función que resalta el enlace activo en la navbar
+ * @param {*} route Ruta a resaltar
  */
 function activateRoute(route) {
     const ul = document.getElementById('routes');
@@ -202,8 +198,8 @@ function activateRoute(route) {
     });
 }
 /**
- *
- * @param {*} loading
+ * Función que muestra y oculta la ventana de cargando
+ * @param {*} loading True or False. Indica si se debe mostrar u ocultar
  */
 function showLoading(loading = true) {
     const app = document.getElementById('app');
@@ -219,7 +215,7 @@ function showLoading(loading = true) {
 }
 
 /**
- *
+ * Función que crea el álbum vacío para insertar luego juegos dentro
  */
 function createAlbum() {
     const album = createComponent(undefined, [], 'div');
@@ -238,7 +234,7 @@ function createAlbum() {
 }
 
 /**
- *
+ * Función que borra todos los juegos en pantalla
  */
 function clearGames() {
     const row = document.getElementById('row');
@@ -246,8 +242,10 @@ function clearGames() {
 }
 
 /**
- *
- * @param {*} json
+ * Función que recibe el parámetro de la API en formato json y construye un grupo de objetos
+ * de tipo game con los datos.
+ * @param {*} json JSON extraído de la API
+ * @return {array} Array de objetos tipo Game
  */
 function createGames(json) {
     const games = [];
@@ -259,8 +257,10 @@ function createGames(json) {
 }
 
 /**
- *
- * @param {*} gamesArr
+ * Función que recibe un array de objetos tipo Game y lo recorre para crear una
+ * tarjeta por cada juego y luego las muestra
+ * @param {*} gamesArr Array de objetos tipo Game
+ * @param {boolean} clear True or False. Indica si debe borrarse la pantalla
  */
 function showGames(gamesArr, clear = false) {
     const row = document.getElementById('row');
@@ -286,8 +286,9 @@ function showGames(gamesArr, clear = false) {
 }
 
 /**
- *
- * @param {*} renderDone
+ * Función que renderiza la página y muestra la ventana loading hasta que finaliza el
+ * renderizado
+ * @param {callback} renderDone Función a la que llama cuando se ha terminado de renderizar la página
  */
 function renderLayout(renderDone) {
     showLoading();
@@ -312,11 +313,11 @@ function renderLayout(renderDone) {
 }
 
 /**
- * This function creates a web component
- * @param {string} text - if the component is a textNode you must to enter the text here.
- * @param {array} attributes - add the attributes to component. Accept a Json array like this [{'key' : '', 'value' : ''}]
- * @param {string} type - enter the type of the component. textNode for default.
- * @return {Element}
+ * Función que crea un componente según los parámetros recibidos.
+ * @param {string} text - Si este parámetro contiene un texto crea un Node.
+ * @param {array} attributes - Array que contiene los atributos a agregar al componente.
+ * @param {string} type - String que indica el tipo de componente que estamos crteando
+ * @return {Element} Devuelve el componente creado.
  */
 function createComponent(text = undefined, attributes, type) {
     let component;

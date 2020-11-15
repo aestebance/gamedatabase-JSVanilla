@@ -6,7 +6,8 @@
 /* eslint-disable linebreak-style */
 
 /**
- *
+ * Clase que crea un componente modal de bootstrap vacío que luego será
+ * rellenado cuando sea mostrado. De inicio se crea oculto.
  */
 class Modal {
     constructor() {
@@ -69,7 +70,9 @@ class Modal {
 
         this.modal = modal;
     }
-
+    /**
+     * @return {component} Devuelve un componente modal.
+     */
     get() {
         return this.modal;
     }

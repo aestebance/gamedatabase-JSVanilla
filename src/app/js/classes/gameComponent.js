@@ -2,7 +2,9 @@
 /* eslint-disable require-jsdoc */
 /* eslint-disable no-unused-vars */
 /**
- *
+ * Clase que recibe como parámetros del constructor un objeto de la clase game
+ *  y una función callback. La clase crea una tarjeta con el juego para ser
+ * mostrada. El callback es la función que llama cuando se pulsa en more.
  */
 class GameComponent {
     constructor(game, callback) {
@@ -19,6 +21,9 @@ class GameComponent {
                 {'key': 'playsinline', 'true': game.clips.clip},
                 {'key': 'webkit-playsinline', 'true': game.clips.clip},
             ], 'video');
+            /* Capturamos la promesa e ignoramos el error ya que por política
+               de Chrome un vídeo no puede ser activado con mouseOver si el
+               usuario no ha hecho click en la página previamente */
             media.addEventListener('mouseover', function() {
                 media.play().then((response)=>{}).catch((e)=>{});
             });
@@ -129,7 +134,9 @@ class GameComponent {
 
         this.component = col;
     }
-
+    /**
+     * @return {component} devuelve el componente creado.
+     */
     get() {
         return this.component;
     }

@@ -4,7 +4,8 @@
 /* eslint-disable no-unused-vars */
 
 /**
- *
+ * Clase que crea un componente que se muestra como
+ * pantalla de cargando cuando se está renderizando la página.
  */
 class Loading {
     constructor(loadingText = 'loading....') {
@@ -25,7 +26,9 @@ class Loading {
 
         this.div = divBorder;
     }
-
+    /**
+     * @return {component} Devuelve el objeto de tipo componente creado.
+     */
     get() {
         return this.div;
     }

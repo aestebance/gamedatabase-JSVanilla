@@ -3,7 +3,8 @@
 /* eslint-disable require-jsdoc */
 /* eslint-disable no-unused-vars */
 /**
- *
+ * Clase que crea un componente Header, recibe como parámetro una
+ * función callback que es llamada cuando se hace una búsqueda
  */
 class Header {
     constructor(callback) {
@@ -30,7 +31,9 @@ class Header {
 
         this.header = header;
     }
-
+    /**
+     * @return {component} Devuelve el objeto de tipo componente creado.
+     */
     get() {
         return this.header;
     }

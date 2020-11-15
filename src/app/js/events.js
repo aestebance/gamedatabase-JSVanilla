@@ -1,8 +1,8 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable no-unused-vars */
 /**
- *
- * @param {*} e
+ * Función a la que se le llama cuando se pulsa en "more" en algún juego.
+ * @param {*} e Variable que contiene el evento.
  */
 function createfrontFrame(e) {
     showLoading();
@@ -10,8 +10,8 @@ function createfrontFrame(e) {
 }
 
 /**
- *
- * @param {*} e
+ * Función a la que se le llama cuando se pulsa en un dropdown.
+ * @param {*} e Variable que contiene el evento
  */
 function clickDropDown(e) {
     showLoading();
@@ -23,8 +23,8 @@ function clickDropDown(e) {
 }
 
 /**
- *
- * @param {*} e
+ * Función a la que se le llama cuando se hace click en un enlace del navbar
+ * @param {*} e Variable que contiene el evento
  */
 const navbarEvent = function(e) {
     e.preventDefault();
@@ -33,8 +33,8 @@ const navbarEvent = function(e) {
 };
 
 /**
- *
- * @param {*} e
+ * Función a la que se llama para agregar más juegos al hacer scrolldown
+ * @param {*} e Variable que contiene el evento
  */
 const updateComponents = function(e) {
     e.preventDefault();
@@ -52,8 +52,9 @@ const updateComponents = function(e) {
 };
 
 /**
- *
- * @param {*} e
+ * Función a la que se llama cuando se hace scroll para ver si estamos al final
+ * de la página
+ * @param {*} e Variable que contiene el evento
  */
 function scrollEventListener(e) {
     const app = document.getElementsByTagName('html')[0];
